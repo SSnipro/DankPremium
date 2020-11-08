@@ -3,7 +3,8 @@ from telegram.ext import Dispatcher,CommandHandler
 from telegram.ext import Updater
 from telegram.ext import MessageHandler, Filters
 import os
-
+import bal
+import reward
 
 def start(update, context):
     update.message.reply_text("""
@@ -45,4 +46,6 @@ start_handler = CommandHandler('PDStart', start)
 info_handler = CommandHandler('PDInfo', start)
 dispatcher.add_handler(start_handler)
 dispatcher.add_handler(info_handler)
+bal.add_handler(dispatcher)
+reward.add_handler(dispatcher)
 updater.start_polling()
