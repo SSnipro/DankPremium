@@ -38,7 +38,7 @@ def read_file_as_str(file_path):
     all_the_text = open(file_path).read()
     return all_the_text
 
-TOKEN = read_file_as_str('TOKEN%')
+TOKEN = read_file_as_str('TOKEN')
 updater = Updater(token=TOKEN, use_context=True)
 dispatcher = updater.dispatcher
 start_handler = CommandHandler('PDStart', start)
