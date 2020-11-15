@@ -1,6 +1,8 @@
 import random
 from telegram.ext import Dispatcher,CommandHandler
+from telegram import BotCommand
 import bal
+
 
 def rewarded(update, context):
     user = update.message.from_user
@@ -24,3 +26,6 @@ def add_handler(dp:Dispatcher):
     reward_handler = CommandHandler('PDReward', rewarded)
     dp.add_handler(reward_handler)
 
+
+def get_command():
+    return [BotCommand('pdreward','Get rewards!')]

@@ -5,6 +5,8 @@ from telegram.ext import MessageHandler, Filters
 import os
 import bal
 import reward
+import bj
+import punish
 
 def start(update, context):
     update.message.reply_text("""
@@ -48,4 +50,11 @@ dispatcher.add_handler(start_handler)
 dispatcher.add_handler(info_handler)
 bal.add_handler(dispatcher)
 reward.add_handler(dispatcher)
+bj.add_handler(dispatcher)
+punish.add_handler(dispatcher)
+
+commands = reward.get_command() + bal.get_command() + punish.get_command()
+bot = updater.bot
+bot.set_my_commands(commands)
+
 updater.start_polling()
