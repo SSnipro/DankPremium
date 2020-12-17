@@ -1,6 +1,8 @@
 import random
 from telegram.ext import Dispatcher,CommandHandler,CallbackQueryHandler
 from telegram import InlineKeyboardMarkup,InlineKeyboardButton, BotCommand
+import bal
+
 #   /blackjack
 #    
 #   help 
@@ -104,17 +106,21 @@ def userCount(chatid, uid):
         counts += j # :)
     return counts
 
+roles = ['👮🏻‍♀️','👷🏻‍♂️','💂🏻‍♂️','👨🏻‍⚕️','👨🏻‍🎓','👩🏻‍✈️','🤴🏻','👸🏻']
+role = random.choice(roles)
+
 def getUsers(chatid):
+    global role
     msg = ""
     print(games[chatid])
     msg += "🤖 DMII: %s = %s %s\n\n"%(games[chatid]['DMII']['cards'],DMII_count(chatid),games[chatid]['DMII']['state'])
-
     for u in games[chatid]['users'].keys():
-        msg += "%s: %s = %s %s\n"%(games[chatid]['users'][u]['name'],games[chatid]['users'][u]["cards"],userCount(chatid, u),games[chatid]['users'][u]['state'])
+        msg += "%s %s: %s = %s %s\n"%(role,games[chatid]['users'][u]['name'],games[chatid]['users'][u]["cards"],userCount(chatid, u),games[chatid]['users'][u]['state'])
     
     return msg
-    
+
 def bot(update,context):
+    user = update.message.from_user
     # []
     # 至少发一张
     # while count < 10 一定再发一张
@@ -130,7 +136,7 @@ def bot(update,context):
     if len(games[chatid]['DMII']['cards']) == 0:
         games[chatid]['DMII']['cards'].append(card)
     # while count < 10 一定再发一张
-    while DMII_count(chatid) < 10:
+    while DMII_count(chatid) < 11:
         card = random.randint(1,11)
         games[chatid]['DMII']['cards'].append(card)
     msg = ""
@@ -140,7 +146,8 @@ def bot(update,context):
     msg += f"Bot: \n{games[chatid]['DMII']['cards']} total: {DMII_count(chatid)}"
     update.message.reply_text(getUsers(chatid),reply_markup=gamekb)
 
-def ccl(chatid):
+def ccl(chatid,user):
+    bal.check(user)
     # 从games生成[[uid:count]......[dmii:count]]
     check_chatid(chatid)
     gamecount = []
@@ -158,27 +165,23 @@ def ccl(chatid):
     # for aa in [a,b,dmii,c,d,e]
     #   if aa > 21 set 爆
     #   elif a <=21 and  have_win==false  赢了 set have_win=true print(f"start:{gamecount}|{final}")
-    print(final)
     # [[465307161, 7], [1360440667, 12], ['DMII', 10]]  
     win = False
     max = 0 
-    print(games)
     for a in final:
-        print(a)
         uid = a[0]
         if (win and a[1] != max) or a[1] > 21:
             if not a[0] == 'DMII':
-                games[chatid]['users'][uid]["state"]="❌ 失败"
+                games[chatid]['users'][uid]["state"]="❌ 失败 💥 $%s - $1000"%(bal.get_coins(user))
             else:
                 games[chatid]['DMII']['state']="❌ 失败"
         else:
             if not a[0] == 'DMII':
-                games[chatid]['users'][uid]["state"]="✅ 胜利"
+                games[chatid]['users'][uid]["state"]="✅ 胜利 💰 $%s + $2000"%(bal.get_coins(user))
             else:
                 games[chatid]['DMII']['state']="✅ 胜利"
             win = True
             max = a[1]
-        print(games)
     
             
             
@@ -209,6 +212,7 @@ def sort(gamecount):
 
 
 def button(update,context):
+    user = update.effective_user
     uid = update.effective_user.id
     query = update.callback_query 
     first_name = update.effective_user.first_name
@@ -224,16 +228,22 @@ def button(update,context):
         games[chatid]['users'][uid]['state'] = "🔴 停牌"
         query.edit_message_text(getUsers(chatid),reply_markup=gamekb)
     elif query.data == 'bj:sum':
-        ccl(chatid)
+        bal.check(user)
+        ccl(chatid,user)
+        if games[chatid]['users'][uid]["state"]=="❌ 失败 💥 $%s - $1000"%(bal.get_coins(user)):
+            bal.addcoins(user,-1000)
+        elif games[chatid]['users'][uid]["state"]=="✅ 胜利 💰 $%s + $2000"%(bal.get_coins(user)):
+            bal.addcoins(user,2000)
         query.edit_message_text(getUsers(chatid))
         games = {}
+        
 
 def add_handler(dp:Dispatcher):
-    blackjack_handler = CommandHandler('PDBlackjack', bot)
+    blackjack_handler = CommandHandler('PDBj', bot)
     dp.add_handler(blackjack_handler)
     dp.add_handler(CallbackQueryHandler(button,pattern="^bj:[A-Za-z0-9_]*"))
 
 def get_command():
-    return [BotCommand('pdblackjack','Play the Blackjack Game!')]
+    return [BotCommand('pdbj','Play the Blackjack Game!')]
 
 
