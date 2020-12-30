@@ -1,8 +1,9 @@
 import random
 from datetime import datetime,timedelta
 from telegram.ext import Dispatcher,CommandHandler, Filters
-from telegram import BotCommand
+from telegram import BotCommand, Animation
 import config
+
 
 #  {
 #       uid:{
@@ -33,8 +34,11 @@ def get_coins(user):
 def balence(update, context):
     user = update.message.from_user
     check(user)
-    update.message.reply_text("""Balance of %s (ID:%s) %s attempts: %s XP
-"""%(user.first_name,user.id,get_count(user),get_coins(user)))
+#     update.message.reply_text("""🏦 ✨%s (银行ID: %s) 的银行账户余额：$%s ✨, %s 次取钱
+# """%(user.first_name,user.id,get_coins(user),get_count(user)))
+# coins_file = Path("/Users/Snipro/work/DankPremium/images/dino.gif")
+    animation = Animation("CgACAgEAAx0CUXFqQAACZZhf52IcIHI8mS_z4Q3l3SOdLJx0FwAC0wMAAttxQEd0cCIuSnOpcB4E","AgAD0wMAAttxQEc",220,221,5)
+    update.message.reply_animation(animation ,caption="🏦 ✨%s (银行ID: %s) 的银行账户余额：$%s ✨, %s 次取钱"%(user.first_name,user.id,get_coins(user),get_count(user)))
 
 def addcoins(user,coins):
     uid = str(user.id)
