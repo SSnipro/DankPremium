@@ -6,10 +6,10 @@ import balence
 def pog(update, context):
     msg44 = """What do you want to do with your life? 
     
-/DAdventure 冒险 
-/DWork 工作
-/DStudy 学习
-/DSearch 探索
+/PDAdventure 冒险 
+/PDWork 工作
+/PDStudy 学习
+/PDSearch 探索
     """
     msg44 += "\n\nAuthorised By Noah <3\n作者：Noah"
     update.message.reply_text(msg44)
