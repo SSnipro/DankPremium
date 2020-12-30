@@ -11,7 +11,7 @@ def pog(update, context):
 /PDStudy 学习
 /PDSearch 探索
     """
-    msg44 += "\n\nAuthorised By Noah <3\n作者：Noah"
+    msg44 += "\n\nᴀᴜᴛʜᴏʀɪꜱᴇᴅ ʙʏ ɴᴏᴀʜ ❤️ \n作者：ɴᴏᴀʜ"
     update.message.reply_text(msg44)
 
 def add_handler(dp:Dispatcher):
