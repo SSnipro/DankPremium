@@ -12,7 +12,7 @@ Or:
 
 Go to the better store with better supplies? /DBetterStore
     """
-    msg += "\n\nAuthorised By Noah <3\n作者：Noah"
+    msg += "\n\nᴀᴜᴛʜᴏʀɪꜱᴇᴅ ʙʏ ɴᴏᴀʜ ❤️ \n作者：ɴᴏᴀʜ"
     update.message.reply_text(msg)
 
 def add_handler(dp:Dispatcher):
