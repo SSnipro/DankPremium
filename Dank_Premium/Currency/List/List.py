@@ -15,7 +15,7 @@ def pog(update, context):
     update.message.reply_text(msg44)
 
 def add_handler(dp:Dispatcher):
-    list_handler = CommandHandler('DList', pog)
+    list_handler = CommandHandler('PDList', pog)
     dp.add_handler(list_handler)
 
 
