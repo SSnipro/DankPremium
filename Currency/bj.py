@@ -120,7 +120,7 @@ def getUsers(chatid):
     return msg
 
 def bot(update,context):
-    user = update.message.from_user
+    user = update.effective_user
     # []
     # 至少发一张
     # while count < 10 一定再发一张

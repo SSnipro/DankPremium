@@ -64,57 +64,57 @@ place = {
         'boss': ['ur mom','Angry Boomers'],
         'bosspercentage': 5,
         'coins': [[40,200]]
-    },
-    'Haunted House':{
-        'boss': ['Ghost','Guardian'],
-        'bosspercentage': 50,
-        'coins': [[0,0],[2000,10000]]
-    },
-    'Gold Mine':{
-        'boss': [],
-        'bosspercentage': 0,
-        'coins': [[10000,50000]]
-    },
-    'Tree':{
-        'boss': ['Pirate','Fake Branch','Guardian'],
-        'bosspercentage': 40,
-        'coins': [[0,50],[2000,10000]]
-    },
-    'L-Park':{
-        'boss': ['Angry Boomers','Bully'],
-        'bosspercentage': 30,
-        'coins': [[1,7],[10,70]]
-    },
-    'Mystery Place':{
-        'boss': ['Mystery Trainer','Mystery Head Evice','Mystery Master','Mystery Conqueror Xerneas'],
-        'bosspercentage': 100,
-        'coins': [[0,75000]]
-    },
-    'Ancient Battlegrounds':{
-        'boss': ['Illegal Time Travellers'],
-        'bosspercentage': 10,
-        'coins': [[0,10000]]
-    },
-    'Warzone':{
-        'boss': ['Army #1','Army #2'],
-        'bosspercentage': 90,
-        'coins': [[0,1000]]
-    },
-    'Graveyard':{
-        'boss': ['Mutants','Zombies','Undead','Skeletons','R34P3R'],
-        'bosspercentage': 55,
-        'coins': [[0,100],[1000,10000]]
-    },
-    'DMII Factory':{
-        'boss': ['DMII','Workers','Security Guards','Factory Owner & Bodyguards'],
-        'bosspercentage': 85,
-        'coins': [[5000,25000]]
-    },
-    'Ancient Ocean Ruins':{
-        'boss': ['Oxygen Absorber','Wailord','Elder Guardian'],
-        'bosspercentage': 65,
-        'coins': [[100,15000]]
-    }
+    }#,
+    # 'Haunted House':{
+    #     'boss': ['Ghost','Guardian'],
+    #     'bosspercentage': 50,
+    #     'coins': [[0,0],[2000,10000]]
+    # },
+    # 'Gold Mine':{
+    #     'boss': [],
+    #     'bosspercentage': 0,
+    #     'coins': [[10000,50000]]
+    # },
+    # 'Tree':{
+    #     'boss': ['Pirate','Fake Branch','Guardian'],
+    #     'bosspercentage': 40,
+    #     'coins': [[0,50],[2000,10000]]
+    # },
+    # 'L-Park':{
+    #     'boss': ['Angry Boomers','Bully'],
+    #     'bosspercentage': 30,
+    #     'coins': [[1,7],[10,70]]
+    # },
+    # 'Mystery Place':{
+    #     'boss': ['Mystery Trainer','Mystery Head Evice','Mystery Master','Mystery Conqueror Xerneas'],
+    #     'bosspercentage': 100,
+    #     'coins': [[0,75000]]
+    # },
+    # 'Ancient Battlegrounds':{
+    #     'boss': ['Illegal Time Travellers'],
+    #     'bosspercentage': 10,
+    #     'coins': [[0,10000]]
+    # },
+    # 'Warzone':{
+    #     'boss': ['Army #1','Army #2'],
+    #     'bosspercentage': 90,
+    #     'coins': [[0,1000]]
+    # },
+    # 'Graveyard':{
+    #     'boss': ['Mutants','Zombies','Undead','Skeletons','R34P3R'],
+    #     'bosspercentage': 55,
+    #     'coins': [[0,100],[1000,10000]]
+    # },
+    # 'DMII Factory':{
+    #     'boss': ['DMII','Workers','Security Guards','Factory Owner & Bodyguards'],
+    #     'bosspercentage': 85,
+    #     'coins': [[5000,25000]]
+    # },
+    # 'Ancient Ocean Ruins':{
+    #     'boss': ['Oxygen Absorber','Wailord','Elder Guardian'],
+    #     'bosspercentage': 65,
+    #     'coins': [[100,15000]]
+    # }
 
     # search = ['Air','Bank','Street','School','Hospital','Attic','Haunted House','Gold Mine','Tree','L-Park','Mystery Place','Battlegrounds','Warzone','Graveyard','DMII Factory']
 }
@@ -215,12 +215,34 @@ boss = {
         'speed': 150,
         'img': 'https://www.statnews.com/wp-content/uploads/2020/02/Coronavirus-CDC-645x645.jpg'
     },
-    'Death:':{
+    'Death':{
         'hp': 100,
         'atk': 1000,
         'defence': 1000,
         'speed': 100,
         'img': 'https://1a3kls1q8u5etu6z53sktyqdif-wpengine.netdna-ssl.com/wp-content/uploads/2018/08/Death.jpg'
+    },
+    'Psychopath':{
+        'hp': 45,
+        'atk': 75,
+        'defence': 25,
+        'speed': 50,
+        'img': 'https://static.e-counseling.com/wp-content/uploads/2018/06/Sociopath-vs.-Psychopath.jpg'
+    },
+    ####
+    'ur mom':{
+        'hp': 50,
+        'atk': 50,
+        'defence': 50,
+        'speed': 50,
+        'img': 'https://www.emmys.com/sites/default/files/styles/show_detail/public/shows/mom-2016-600x600.jpg?itok=mIXceYjI'
+    },
+    'Angry Boomers':{
+        'hp': 40,
+        'atk': 40,
+        'defence': 50,  
+        'speed': 10,
+        'img': ''
     }
 }
 class Place:
@@ -233,7 +255,7 @@ class Place:
         bosspercentage = place[name]['bosspercentage']
         boss = place[name]['boss']
         percent = random.randint(1,100)
-        if percent >= bosspercentage:
+        if percent >= bosspercentage and not boss == [] :
             self.boss = Boss(random.choice(boss))
         rcoins = random.choice(place[name]['coins'])
         self.coins = random.randint(rcoins[0],rcoins[1])
@@ -242,16 +264,11 @@ class Place:
         return f"{self.name}:  boss: {self.boss}  coins: {self.coins}"
 
 def random_destination():
-    p1 = place.copy()
-    d1g = Place( random.choice(list(p1.keys())) )
-    del p1[d1g.name]
-    d2g = Place( random.choice(list(p1.keys())) )
-    del p1[d2g.name]
-    d3g = Place( random.choice(list(p1.keys())) )
-    del p1[d3g.name]
-    return [d1g,d2g,d3g]
-
-    
+    dest = random.sample(list(place.keys()),3)
+    ds = []
+    for d in dest:
+        ds.append( Place(d) )
+    return ds
 
 # d1g,d2g = random_destination()
 # print(d1g.boss)
@@ -285,6 +302,7 @@ class Boss:
     atk = 0
     defence = 0
     speed = 0
+    img = ''
 
     def __init__(self,name):
         self.name = name
@@ -295,14 +313,13 @@ class Boss:
         self.image = boss[name]['img']
 
     def __str__(self):
-        return  f"{self.name}"
+        return  str(self.__dict__)
 
 
 
-# if __name__ == '__main__':
-#     print('test random_destination')
-#     dest = random_destination()
-#     for d in dest:
-#         print(d)
-#         print(d.boss)
+if __name__ == '__main__':
+    print('test random_destination')
+    dest = random_destination()
+    for d in dest:
+        print(d)
 
