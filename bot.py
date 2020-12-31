@@ -5,21 +5,21 @@ from telegram.ext import MessageHandler, Filters
 from telegram import BotCommand
 import os
 from Currency import bal
-import work
-import bj
-import punish
-import gif
-import tf
+from Currency import work
+from Currency import bj
+from Fun import punish
+from Fun import gif
+from Currency.UNRELEASED import tf
 from Currency.LIST.Adventure.Wilderness import hunt
-import fish
-import lr
-from Currency.LIST import adventure
-import list
+from Currency import fish
+from Currency.UNRELEASED import lr
+from Currency.LIST.Adventure import adventure
+from Currency.LIST import list
 
 def start(update, context):
     update.message.reply_text("""
 Sup! My name is Dank Premium. Authorized by Telegram User SSnipro (Just call him Noah it's fine).
-Dank Premium provides lots of amazing features. You can do many things to try to get much $ as you want!
+Dank Premium provides lots of amazing features. You can do many things to try  to get much $ as you want!
     
 Also, Noah will try to add some new features really soon!
     
