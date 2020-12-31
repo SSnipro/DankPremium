@@ -1,0 +1,10 @@
+[Unit]
+Description=Sicheng God Bot Service
+
+[Service]
+ExecStart=/home/pi/py3/bin/python /home/pi/noah/DankPremium/bot.py -c /home/pi/noah/DankPremium
+Restart=on-failure
+Type=notify
+
+[Install]
+WantedBy=default.target
