@@ -4,16 +4,16 @@ from telegram.ext import Updater
 from telegram.ext import MessageHandler, Filters
 from telegram import BotCommand
 import os
-import bal
+from Currency import bal
 import work
 import bj
 import punish
 import gif
 import tf
-import hunt
+from Currency.LIST.Adventure.Wilderness import hunt
 import fish
 import lr
-import adv
+from Currency.LIST import adventure
 import list
 
 def start(update, context):
@@ -99,7 +99,7 @@ tf.add_handler(dispatcher)
 hunt.add_handler(dispatcher)
 fish.add_handler(dispatcher)
 lr.add_handler(dispatcher)
-adv.add_handler(dispatcher)
+adventure.add_handler(dispatcher)
 list.add_handler(dispatcher)
 
 commands = work.get_command() + bal.get_command() + gif.get_command() + bj.get_command() + get_command() + hunt.get_command() + fish.get_command()

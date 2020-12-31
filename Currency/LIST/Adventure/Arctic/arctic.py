@@ -1,6 +1,6 @@
 import random
 from telegram.ext import Dispatcher,CommandHandler
-import balence
+from Currency import bal
 
 def arctic(update, context):
     msg = """You are at the arctic. A friend of yours called you and wanted you to go to the arcic research station but you need a snow-moto and a drill.
@@ -16,5 +16,5 @@ Go to the better store with better supplies? /DBetterStore
     update.message.reply_text(msg)
 
 def add_handler(dp:Dispatcher):
-    arctic_handler = CommandHandler('DArctic', arctic)
+    arctic_handler = CommandHandler('PDArctic', arctic)
     dp.add_handler(arctic_handler)

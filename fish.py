@@ -1,7 +1,7 @@
 import random
 from telegram.ext import Dispatcher,CommandHandler
 from telegram import BotCommand
-import bal
+from Currency import bal
 
 def fish(update, context):
     Fish = [

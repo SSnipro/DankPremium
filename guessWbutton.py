@@ -2,8 +2,8 @@ from telegram.ext import Dispatcher,CommandHandler,CallbackQueryHandler
 from telegram import InlineKeyboardMarkup,InlineKeyboardButton, BotCommand
 import random
 from datetime import datetime,timedelta
-import bal
-import util
+from Currency import bal
+from Utils import util
 
 gameskb = [{
     '小':'b1:small',

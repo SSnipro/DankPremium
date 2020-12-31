@@ -1,4 +1,4 @@
-import bal
+from Currency import bal
 import random
 from datetime import datetime,timedelta
 from telegram.ext import Dispatcher,CommandHandler, Filters

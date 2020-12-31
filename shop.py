@@ -1,7 +1,7 @@
 import random
 from telegram.ext import Dispatcher,CommandHandler
 from telegram import BotCommand
-import bal
+from Currency import bal
 
 
 def shop(update, context):
@@ -23,7 +23,7 @@ def shop(update, context):
 
 
 def add_handler(dp:Dispatcher):
-    reward_handler = CommandHandler('PDReward', rewarded)
+    reward_handler = CommandHandler('PDReward', shop)
     dp.add_handler(reward_handler)
 
 

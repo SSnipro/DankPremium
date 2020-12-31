@@ -1,6 +1,6 @@
 import random
 from telegram.ext import Dispatcher,CommandHandler
-import bal
+from Currency import bal
 
 
 def pog(update, context):

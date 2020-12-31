@@ -3,7 +3,7 @@ from telegram.ext import CommandHandler, Dispatcher, CallbackQueryHandler
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, BotCommand
 from datetime import datetime,timedelta
 import random
-import bal
+from Currency import bal
 
 
 # 文档

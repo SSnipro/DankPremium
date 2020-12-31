@@ -1,7 +1,7 @@
 import random
 from telegram.ext import Dispatcher,CommandHandler,CallbackQueryHandler
 from telegram import InlineKeyboardMarkup,InlineKeyboardButton, BotCommand
-import bal
+from Currency import bal
 
 #   /blackjack
 #    

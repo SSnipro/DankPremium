@@ -1,6 +1,7 @@
 import random
 from telegram.ext import Dispatcher,CommandHandler
-import balence
+from Currency import bal
+
 def fp(update, context):
     ok = random.randint(1111,3333)
     sp = ["temple. You found alot of ancient redstone contrapions and sold them for %s XP."%(ok), "dead end.", "pond and a shop beside it. If you want to buy a fishing rod and fish, use the command /PDFish."]

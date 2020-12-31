@@ -1,6 +1,6 @@
 import random
 from telegram.ext import Dispatcher,CommandHandler
-import bal
+from Currency import bal
 
 def c(update, context):
     ri = random.randint(2000,12000)
