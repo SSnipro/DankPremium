@@ -1,6 +1,6 @@
 import random
 from telegram.ext import Dispatcher,CommandHandler
-import balence
+import bal
 
 def adv(update, context):
     msg = """You chose to Adventure. But now...

@@ -1,0 +1,43 @@
+{
+  "Air": {
+    "boss": ["Dementor", "Ho-oh", "Eagle", "Plane"],
+    "bosspercentage": 30,
+    "coins": [[300, 1500]]
+  },
+  "Bank": {
+    "boss": ["FBI", "SWAT", "Local Police", "Gengar"],
+    "bosspercentage": 85,
+    "coins": [[1200, 20000]]
+  },
+  "Street": {
+    "boss": ["bad guy", "Local Police"],
+    "bosspercentage": 15,
+    "coins": [
+      [0, 0],
+      [23, 47]
+    ]
+  },
+  "School": {
+    "boss": ["Security Guard", "Local Police", "Students", "Guardian"],
+    "bosspercentage": 50,
+    "coins": [[0, 250]]
+  },
+  "Hospital": {
+    "boss": ["Local Police", "COVID-19", "Death"],
+    "bosspercentage": 50,
+    "coins": [[20, 200]]
+  },
+  "Attic": {
+    "boss": ["ur mom", "Angry Grandpa"],
+    "bosspercentage": 5,
+    "coins": [[40, 200]]
+  },
+  "Haunted House": {
+    "boss": ["Ghost"],
+    "bosspercentage": 50,
+    "coins": [
+      [0, 0],
+      [2000, 10000]
+    ]
+  }
+}

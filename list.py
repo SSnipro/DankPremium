@@ -1,6 +1,6 @@
 import random
 from telegram.ext import Dispatcher,CommandHandler
-import balence
+import bal
 
 
 def pog(update, context):
@@ -11,14 +11,10 @@ def pog(update, context):
 /PDStudy 学习
 /PDSearch 探索
     """
-    msg44 += "\n\nᴀᴜᴛʜᴏʀɪꜱᴇᴅ ʙʏ ɴᴏᴀʜ ❤️ \n作者：ɴᴏᴀʜ"
+    msg44 += "\n\nAuthorised By Noah <3\n作者：Noah"
     update.message.reply_text(msg44)
 
 def add_handler(dp:Dispatcher):
     list_handler = CommandHandler('PDList', pog)
     dp.add_handler(list_handler)
-
-
-
-
 
