@@ -4,20 +4,16 @@ from telegram.ext import Updater
 from telegram.ext import MessageHandler, Filters
 from telegram import BotCommand
 import os
-from Currency import bal
-from Currency import work
-from Currency import bj
-from Fun import punish
-from Fun import gif
-from Currency.UNRELEASED import tf
-from Currency.LIST.Adventure.Wilderness import hunt
-from Currency import fish
-from Currency.UNRELEASED import lr
-from Currency.LIST.Adventure import adventure
+from Currency import bal,work,bj,fish
+from Currency.UNRELEASED import tf,lr,search
 from Currency.LIST import list
+from Currency.LIST.Adventure import adventure
+from Currency.LIST.Adventure.Wilderness import hunt
+from Fun import punish,gif
 
 def start(update, context):
     update.message.reply_text("""
+
 Sup! My name is Dank Premium. Authorized by Telegram User SSnipro (Just call him Noah it's fine).
 Dank Premium provides lots of amazing features. You can do many things to try  to get much $ as you want!
     
@@ -101,6 +97,7 @@ fish.add_handler(dispatcher)
 lr.add_handler(dispatcher)
 adventure.add_handler(dispatcher)
 list.add_handler(dispatcher)
+search.add_handler(dispatcher)
 
 commands = work.get_command() + bal.get_command() + gif.get_command() + bj.get_command() + get_command() + hunt.get_command() + fish.get_command()
 bot = updater.bot
