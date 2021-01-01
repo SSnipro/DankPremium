@@ -10,6 +10,7 @@ from Currency.LIST import list
 from Currency.LIST.Adventure import adventure
 from Currency.LIST.Adventure.Wilderness import hunt
 from Fun import punish,gif
+from Utils import mysystemd
 
 def start(update, context):
     update.message.reply_text("""
@@ -103,4 +104,10 @@ commands = work.get_command() + bal.get_command() + gif.get_command() + bj.get_c
 bot = updater.bot
 bot.set_my_commands(commands)
 
-updater.start_polling() 
+updater.start_polling()
+print('Started')
+mysystemd.ready()
+
+updater.idle()
+print('Stopping...')
+print('Stopped.')
