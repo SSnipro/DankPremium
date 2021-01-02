@@ -10,6 +10,7 @@ from Currency.LIST import list
 from Currency.LIST.Adventure import adventure
 from Currency.LIST.Adventure.Wilderness import hunt
 from Fun import punish,gif
+from Utils import animationInfo
 
 def start(update, context):
     update.message.reply_text("""
@@ -98,6 +99,7 @@ lr.add_handler(dispatcher)
 adventure.add_handler(dispatcher)
 list.add_handler(dispatcher)
 search.add_handler(dispatcher)
+animationInfo.add_handler(dispatcher)
 
 commands = work.get_command() + bal.get_command() + gif.get_command() + bj.get_command() + get_command() + hunt.get_command() + fish.get_command()
 bot = updater.bot
