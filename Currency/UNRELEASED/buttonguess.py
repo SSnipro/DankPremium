@@ -103,6 +103,6 @@ def buttonCallback(update, context):
 
 
 def add_handler(dp:Dispatcher):
-    guess_handler = CommandHandler('dguessb', guess)
+    guess_handler = CommandHandler('pdguessb', guess)
     dp.add_handler(guess_handler)
     dp.add_handler(CallbackQueryHandler(buttonCallback))

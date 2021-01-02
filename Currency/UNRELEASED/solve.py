@@ -30,5 +30,5 @@ def solving(update, context):
   update.message.reply_text(msg9)
 
 def add_handler(dp:Dispatcher):
-    solve_handler = CommandHandler('DSolve',solving)
+    solve_handler = CommandHandler('PDSolve',solving)
     dp.add_handler(solve_handler)

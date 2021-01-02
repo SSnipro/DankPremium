@@ -125,6 +125,6 @@ def buttonCallback(update, context):
 
 
 def add_handler(dp:Dispatcher):
-    guess_handler = CommandHandler('PDGuessB', guess)
+    guess_handler = CommandHandler('PDGuessB2', guess)
     dp.add_handler(guess_handler)
     dp.add_handler(CallbackQueryHandler(buttonCallback,pattern="^b1:[A-Za-z0-9_]*"))

@@ -47,5 +47,5 @@ def guessing(update, context):
   update.message.reply_text(msg8)
 
 def add_handler(dp:Dispatcher):
-  guess_handler = CommandHandler('DGuess',guessing)
+  guess_handler = CommandHandler('PDGuess',guessing)
   dp.add_handler(guess_handler)
