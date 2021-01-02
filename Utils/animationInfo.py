@@ -7,7 +7,7 @@ def read_animation(update, context):
     unique_id = str(update.message.reply_to_message.animation.file_unique_id)
     width = str(update.message.reply_to_message.animation.width)
     height = str(update.message.reply_to_message.animation.height)
-    duration = str(update.message.reply_to_message.animation.duration)
+    duration = str(update.message.reply_to_message.animation.duration) 
     print(f"file_id = '{file_id}', \n\nfile_unique_id = '{unique_id}', \n\\nwidth = {width}, \n\nheight = {height}, \n\\nduration = {duration}")
     # context.bot.send_message(update.effective_user.id,text=f"file_id = '{file_id}', \nfile_unique_id = '{unique_id}', \nwidth = {width}, \nheight = {height}, \nduration = {duration}")
     animation = Animation(file_id,unique_id,width,height,duration)
