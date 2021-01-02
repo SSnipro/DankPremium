@@ -1,6 +1,6 @@
-#  | DankPremium 
+# Dank Premium 
 
-Sup! My name is Dank Premium. Authorized by Telegram User SSnipro (Just call him Noah it's fine).
+Sup! My name is  | DankPremium . Authorized by Telegram User SSnipro (Just call him Noah it's fine).
 Dank Premium provides lots of amazing features. You can do many things to try to get much $ as you want!
     
 Also, Noah will try to add some new features really soon!
