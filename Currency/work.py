@@ -1,7 +1,7 @@
 import random
 from telegram.ext import Dispatcher,CommandHandler
 from telegram import BotCommand
-from Currency import bal
+import bal
 
 
 def rewarded(update, context):

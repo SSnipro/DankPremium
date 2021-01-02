@@ -1,7 +1,7 @@
 import random
 from telegram.ext import Dispatcher,CommandHandler,CallbackQueryHandler
-from telegram import InlineKeyboardMarkup,InlineKeyboardButton, BotCommand
-from Currency import bal
+from telegram import InlineKeyboardMarkup,InlineKeyboardButton, BotCommand 
+import bal
 
 #   /blackjack
 #    
@@ -120,7 +120,7 @@ def getUsers(chatid):
     return msg
 
 def bot(update,context):
-    user = update.effective_user
+    # user = update.effective_user
     # []
     # 至少发一张
     # while count < 10 一定再发一张

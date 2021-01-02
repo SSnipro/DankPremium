@@ -4,13 +4,13 @@ from telegram.ext import Updater
 from telegram.ext import MessageHandler, Filters
 from telegram import BotCommand
 import os
-from Currency import bal,work,bj,fish
-from Currency.UNRELEASED import tf,lr,search
-from Currency.LIST import list
-from Currency.LIST.Adventure import adventure
-from Currency.LIST.Adventure.Wilderness import hunt
-from Fun import punish,gif
-from Utils import animationInfo
+from DankPremium.Currency import bal,work,bj,fish
+from DankPremium.Currency.UNRELEASED import tf,lr,search
+from DankPremium.Currency.LIST import list
+from DankPremium.Currency.LIST.Adventure import adventure
+from DankPremium.Currency.LIST.Adventure.Wilderness import hunt
+from DankPremium.Fun import punish,gif
+from DankPremium.Utils.get_file_info import animationInfo, fileInfo
 
 def start(update, context):
     update.message.reply_text("""
@@ -100,6 +100,7 @@ adventure.add_handler(dispatcher)
 list.add_handler(dispatcher)
 search.add_handler(dispatcher)
 animationInfo.add_handler(dispatcher)
+fileInfo.add_handler(dispatcher)
 
 commands = work.get_command() + bal.get_command() + gif.get_command() + bj.get_command() + get_command() + hunt.get_command() + fish.get_command()
 bot = updater.bot

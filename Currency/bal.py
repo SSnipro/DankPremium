@@ -1,4 +1,4 @@
-import config
+from DankPremium import config
 import random
 from datetime import datetime,timedelta
 from telegram.ext import Dispatcher,CommandHandler, Filters
