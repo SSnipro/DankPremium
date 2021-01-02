@@ -49,7 +49,7 @@ search = {}
 
 
 def searching(update, context):
-    user = update.effective_user
+    # user = update.effective_user
     dest = place.random_destination()
     print(dest[0])
 
@@ -60,7 +60,6 @@ def searching(update, context):
     }]
 
     gamekb = util.getkb(gameskb)
-
 
     # Search = [
     #     "You searched the air and found some new unknown elements. You gained $300. \n\n你在空气里找到了一些新元素。你得到了 $300。",
