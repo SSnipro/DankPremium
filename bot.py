@@ -3,7 +3,6 @@ from telegram.ext import Dispatcher,CommandHandler
 from telegram.ext import Updater
 from telegram.ext import MessageHandler, Filters
 from telegram import BotCommand
-import os
 from Currency import bal,work,bj,fish
 from Currency.UNRELEASED import tf,lr,search
 from Currency.LIST import list
@@ -11,6 +10,7 @@ from Currency.LIST.Adventure import adventure
 from Currency.LIST.Adventure.Wilderness import hunt
 from Fun import punish,gif
 from Utils.get_file_info import animationInfo, fileInfo
+import os
 
 def start(update, context):
     update.message.reply_text("""
