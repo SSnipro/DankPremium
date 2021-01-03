@@ -64,22 +64,22 @@ place = {
         'boss': ['ur mom','Angry Boomers'],
         'bosspercentage': 5,
         'coins': [[40,200]]
-    }#,
-    # 'Haunted House':{
-    #     'boss': ['Ghost','Guardian'],
-    #     'bosspercentage': 50,
-    #     'coins': [[0,0],[2000,10000]]
-    # },
-    # 'Gold Mine':{
-    #     'boss': [],
-    #     'bosspercentage': 0,
-    #     'coins': [[10000,50000]]
-    # },
-    # 'Tree':{
-    #     'boss': ['Pirate','Fake Branch','Guardian'],
-    #     'bosspercentage': 40,
-    #     'coins': [[0,50],[2000,10000]]
-    # },
+    },
+    'Haunted House':{
+        'boss': ['Ghost','Guardian'],
+        'bosspercentage': 50,
+        'coins': [[0,0],[2000,10000]]
+    },
+    'Gold Mine':{
+        'boss': [],
+        'bosspercentage': 0,
+        'coins': [[10000,50000]]
+    },
+    'Tree':{
+        'boss': ['Pirate','Fake Branch','Guardian'],
+        'bosspercentage': 40,
+        'coins': [[0,50],[2000,10000]]
+    },
     # 'L-Park':{
     #     'boss': ['Angry Boomers','Bully'],
     #     'bosspercentage': 30,
@@ -243,7 +243,28 @@ boss = {
         'defence': 50,  
         'speed': 10,
         'img': ''
-    }
+    },
+    'Ghost':{
+        'hp': 50,
+        'atk': 50,
+        'defence': 250,
+        'speed': 50,
+        'img': ''
+    },
+    'Pirate':{
+        'hp': 50,
+        'atk': 50,
+        'defence': 250,
+        'speed': 50,
+        'img': ''
+    },
+    'Fake Branch':{
+        'hp': 1,
+        'atk': 25,
+        'defence': 0,
+        'speed': 0,
+        'img': ''
+    },
 }
 class Place:
     name = ""

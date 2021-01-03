@@ -20,7 +20,6 @@ from Utils import team,place,util
 
 search = {}
 
-
 #/pdsearch
 #  bot   1 to 1 game
 #   1 to group
@@ -44,21 +43,11 @@ search = {}
 # 
 
 #attic
-
-dest = place.random_destination()
+def fight():
+    pass
 
 def searching(update, context):
-    global dest
-    # user = update.effective_user
-    print(dest[0])
 
-    gameskb = [{
-        dest[0].name:'sr:1'},{
-        dest[1].name:'sr:2'},{
-        dest[2].name:'sr:3'
-    }]
-
-    gamekb = util.getkb(gameskb)
     # Search = [
     #     "You searched the air and found some new unknown elements. You gained $300. \n\n你在空气里找到了一些新元素。你得到了 $300。",
     #     "YOU ROBBED THE BANK AND GAINED $120. NOW RUN \n\n你抢劫了银行并得到了 $120。快跑!!!!!", 
@@ -90,14 +79,64 @@ def searching(update, context):
     # elif msg4 == Search[10]:
     #     bal.addcoins(user,9)
     # msg4 += "\n\nAuthorised By Noah <3\n作者：Noah"
+
+    dest = place.random_destination()
+
+    gameskb = [{
+            dest[0].name:f'sr:p:{dest[0].name}'},{
+            dest[1].name:f'sr:p:{dest[1].name}'},{
+            dest[2].name:f'sr:p:{dest[2].name}'
+        }]
+
+    gamekb = util.getkb(gameskb)
+
     update.message.reply_text(f'Where do you want to search? {dest[0].name}, {dest[1].name} or {dest[2].name}?',reply_markup=gamekb)
 
 def buttonCallback(update,context):
-    global dest
+    user = update.effective_user
+    # query.data     
+    # sr:p:....    列出来的是places
+    # sr:f:....    列出来的是打斗结果
     query = update.callback_query 
-    if query.data == 'sr:1':
-        if dest[0].boss == []:
-            update.message.reply_text('')
+    action = query.data.split(':')[1]
+    restartkb = [{
+        'Search Again':'sr:f:sa'
+    }]
+
+    fightkb = [{
+        'Fight!':'sr:f:fight',
+        'Run!':'sr:f:run'
+    }]
+
+    if action == 'p':
+        # 选择place
+        placename = query.data.split(':')[2]
+        p = place.Place(placename)
+        if p.boss == []:
+            query.edit_message_text(f'You searched the {p.name} and found ${p.coins}',reply_markup=util.getkb(restartkb) )
+            bal.addcoins(user,p.coins)
+        else:
+            query.edit_message_text(f"You searched the {p.name} and found...\n\n🥊 BOSS FIGHT!\n\nIt's {p.boss.name} !\n\n♥️ HP: {p.boss.hp}\n⚔️ Attack: {p.boss.atk}\n🛡 Defence: {p.boss.defence}\n⚡️ Speed: {p.boss.speed} \n\nWanna know what he looks like? Check out {p.boss.image}",reply_markup=util.getkb(fightkb))
+    elif action == "f":
+        msg = ""
+        dest = place.random_destination()
+        gameskb = [{
+                dest[0].name:f'sr:p:{dest[0].name}'},{
+                dest[1].name:f'sr:p:{dest[1].name}'},{
+                dest[2].name:f'sr:p:{dest[2].name}'
+            }]
+        if query.data.split(':')[2] == "fight":
+            placename = query.data.split(':')[2]
+            p = place.Place(placename)
+            msg = f'You won the fight!\n\nYou searched the {p.name} and found ${p.coins}! Search again?'
+            bal.addcoins(user,p.coins)
+        elif query.data.split(':')[2] == "run":
+            msg = "You ran away! Search again?"
+        elif query.data.split(':')[2] == "sa":
+            msg = f'Where do you want to search? {dest[0].name}, {dest[1].name} or {dest[2].name}?'
+        query.edit_message_text(msg,reply_markup=util.getkb(gameskb))
+        
+
 
 def add_handler(dp:Dispatcher):
     search_handler = CommandHandler('PDSearch', searching)
