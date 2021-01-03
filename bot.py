@@ -11,6 +11,7 @@ from Currency.LIST.Adventure.Wilderness import hunt
 from Fun import punish,gif
 from Utils.get_file_info import animationInfo, fileInfo
 import os
+from Utils import mysystemd
 
 def start(update, context):
     update.message.reply_text("""
@@ -125,3 +126,9 @@ bot = updater.bot
 bot.set_my_commands(commands)
 
 updater.start_polling()
+print('Started')
+mysystemd.ready()
+
+updater.idle()
+print('Stopping...')
+print('Stopped.')
