@@ -1,4 +1,3 @@
-
 from telegram.ext import CommandHandler, Dispatcher, CallbackQueryHandler
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, BotCommand
 from datetime import datetime,timedelta
@@ -46,21 +45,20 @@ search = {}
 
 #attic
 
-
+dest = place.random_destination()
 
 def searching(update, context):
+    global dest
     # user = update.effective_user
-    dest = place.random_destination()
     print(dest[0])
 
     gameskb = [{
-        dest[0].name:'1'},{
-        dest[1].name:'2'},{
-        dest[2].name:'3'
+        dest[0].name:'sr:1'},{
+        dest[1].name:'sr:2'},{
+        dest[2].name:'sr:3'
     }]
 
     gamekb = util.getkb(gameskb)
-
     # Search = [
     #     "You searched the air and found some new unknown elements. You gained $300. \n\n你在空气里找到了一些新元素。你得到了 $300。",
     #     "YOU ROBBED THE BANK AND GAINED $120. NOW RUN \n\n你抢劫了银行并得到了 $120。快跑!!!!!", 
@@ -92,11 +90,19 @@ def searching(update, context):
     # elif msg4 == Search[10]:
     #     bal.addcoins(user,9)
     # msg4 += "\n\nAuthorised By Noah <3\n作者：Noah"
-    update.message.reply_text(f'你想去哪里玩? {dest[0].name}, {dest[1].name} 还是 {dest[2].name}?',reply_markup=gamekb)
+    update.message.reply_text(f'Where do you want to search? {dest[0].name}, {dest[1].name} or {dest[2].name}?',reply_markup=gamekb)
+
+def buttonCallback(update,context):
+    global dest
+    query = update.callback_query 
+    if query.data == 'sr:1':
+        if dest[0].boss == []:
+            update.message.reply_text('')
 
 def add_handler(dp:Dispatcher):
     search_handler = CommandHandler('PDSearch', searching)
     dp.add_handler(search_handler)
+    dp.add_handler(CallbackQueryHandler(buttonCallback,pattern="^sr:[A-Za-z0-9_]*"))
 
 
 
