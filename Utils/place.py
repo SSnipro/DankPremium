@@ -269,6 +269,7 @@ boss = {
 class Place:
     name = ""
     boss = []
+    bosspercent = 0
     coins = 0
     
     def __init__(self,name):

@@ -43,11 +43,9 @@ search = {}
 # 
 
 #attic
-def fight():
-    pass
+    
 
 def searching(update, context):
-
     # Search = [
     #     "You searched the air and found some new unknown elements. You gained $300. \n\n你在空气里找到了一些新元素。你得到了 $300。",
     #     "YOU ROBBED THE BANK AND GAINED $120. NOW RUN \n\n你抢劫了银行并得到了 $120。快跑!!!!!", 
@@ -93,7 +91,9 @@ def searching(update, context):
     update.message.reply_text(f'Where do you want to search? {dest[0].name}, {dest[1].name} or {dest[2].name}?',reply_markup=gamekb)
 
 def buttonCallback(update,context):
+    chatid = update.effective_chat.id
     user = update.effective_user
+    uid = user.id
     # query.data     
     # sr:p:....    列出来的是places
     # sr:f:....    列出来的是打斗结果
@@ -104,9 +104,17 @@ def buttonCallback(update,context):
     }]
 
     fightkb = [{
-        'Fight!':'sr:f:fight',
+        'Fight!':'sr:p:fight',
         'Run!':'sr:f:run'
     }]
+
+    dest = place.random_destination()
+
+    # gameskb = [{
+    #             dest[0].name:f'sr:p:{dest[0].name}'},{
+    #             dest[1].name:f'sr:p:{dest[1].name}'},{
+    #             dest[2].name:f'sr:p:{dest[2].name}'
+    #         }]
 
     if action == 'p':
         # 选择place
@@ -117,24 +125,21 @@ def buttonCallback(update,context):
             bal.addcoins(user,p.coins)
         else:
             query.edit_message_text(f"You searched the {p.name} and found...\n\n🥊 BOSS FIGHT!\n\nIt's {p.boss.name} !\n\n♥️ HP: {p.boss.hp}\n⚔️ Attack: {p.boss.atk}\n🛡 Defence: {p.boss.defence}\n⚡️ Speed: {p.boss.speed} \n\nWanna know what he looks like? Check out {p.boss.image}",reply_markup=util.getkb(fightkb))
+            if team.teams[chatid][team] == {}:
+                team.create_team(uid,chatid,random.randint(1,100))
+            if team.members[chatid][uid]['spd'] >= p.boss.speed:
+                msg = f'You won the fight!\n\nYou searched the {p.name} and found ${p.coins}! Search again?'
+                bal.addcoins(user,p.coins)
+            else: 
+                msg = 'die'
+            # query.edit_message_text(msg,reply_markup=util.getkb(gameskb))
     elif action == "f":
         msg = ""
-        dest = place.random_destination()
-        gameskb = [{
-                dest[0].name:f'sr:p:{dest[0].name}'},{
-                dest[1].name:f'sr:p:{dest[1].name}'},{
-                dest[2].name:f'sr:p:{dest[2].name}'
-            }]
-        if query.data.split(':')[2] == "fight":
-            placename = query.data.split(':')[2]
-            p = place.Place(placename)
-            msg = f'You won the fight!\n\nYou searched the {p.name} and found ${p.coins}! Search again?'
-            bal.addcoins(user,p.coins)
-        elif query.data.split(':')[2] == "run":
+        if query.data.split(':')[2] == "run":
             msg = "You ran away! Search again?"
         elif query.data.split(':')[2] == "sa":
             msg = f'Where do you want to search? {dest[0].name}, {dest[1].name} or {dest[2].name}?'
-        query.edit_message_text(msg,reply_markup=util.getkb(gameskb))
+        query.edit_message_text(msg,reply_markup=util.getkb(restartkb))
         
 
 
