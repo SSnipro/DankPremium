@@ -21,6 +21,8 @@ def check(user):
         bal[uid]['fname'] = fname
         bal[uid]['coins'] = 0
         bal[uid]['count'] = 0
+        bal[uid]['dailytime'] = datetime.now().strftime('%Y/%m/%d %H:%M:%S')
+
 
 def get_count(user):
     uid = str(user.id)
@@ -45,12 +47,34 @@ def addcoins(user,coins):
     bal[uid]['coins'] += coins
     bal[uid]['count'] += 1
     bal[uid]['fname'] = fname
+    bal[uid]['dailytime'] = datetime.now().strftime('%Y/%m/%d %H:%M:%S')
     config.CONFIG['bal'] = bal 
     config.save_config()
 
+
+def get_dailytime(uid):
+    return datetime.strptime(bal[uid]['dailytime'],'%Y/%m/%d %H:%M:%S')
+
+def set_dailytime(uid,time):
+    bal[uid]['dailytime']=time.strftime('%Y/%m/%d %H:%M:%S')
+
+def daily(update,context):
+    user = update.effective_user
+    check(user)
+    uid = str(user.id)
+    username = user.username
+    if datetime.now() > get_dailytime(uid):
+        c = random.randint(1000,5000)
+        addcoins(user,c)
+        set_dailytime(uid,datetime.now() + timedelta(days=1))
+        config.save_config()
+        update.message.reply_text(f'Here is your ${c} daily reward @{username}!')
+    else:
+        update.message.reply_text("one day didn't pass yet dummy")
+
 def add_handler(dp:Dispatcher):
-    bal_handler = CommandHandler('PDBal', balence)
-    dp.add_handler(bal_handler)
+    dp.add_handler(CommandHandler('PDBal', balence))
+    dp.add_handler(CommandHandler('PDDaily', daily))
 
 def get_command():
     return [BotCommand('pdbal','Check your bank account!')]
