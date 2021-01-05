@@ -4,7 +4,7 @@ from telegram.ext import Updater
 from telegram.ext import MessageHandler, Filters
 from telegram import BotCommand
 from Currency import bal,work,fish
-from Currency.UNRELEASED import tf,lr,search
+from Currency.UNRELEASED import twentyFour,leaderboards#,search
 from Currency.LIST import lst
 from Currency.LIST.Adventure import adventure
 from Currency.LIST.Adventure.Wilderness import hunt
@@ -112,13 +112,13 @@ work.add_handler(dispatcher)
 bj.add_handler(dispatcher)
 punish.add_handler(dispatcher)
 gif.add_handler(dispatcher)
-tf.add_handler(dispatcher)
+twentyFour.add_handler(dispatcher)
 hunt.add_handler(dispatcher)
 fish.add_handler(dispatcher)
-lr.add_handler(dispatcher)
+leaderboards.add_handler(dispatcher)
 adventure.add_handler(dispatcher)
 lst.add_handler(dispatcher)
-search.add_handler(dispatcher)
+#search.add_handler(dispatcher)
 animationInfo.add_handler(dispatcher)
 fileInfo.add_handler(dispatcher)
 

@@ -22,12 +22,19 @@ What? Still want to check the process? Then run the command '/PDLeaderboards Cur
 想看进度？执行命令'/PDLeaderboards Currency'。"""
 
 def lb(update,context):
-    CONFIG = load_config()
+    # user = update.effective_user
+    # uid = str(user.id)
+    CONFIG = load_config()["bal"]
     if len(context.args) == 0 :
         update.message.reply_text(help()) 
     elif len(context.args) == 1:
-        update.message.reply_text('%s'%(CONFIG))
-    
+        con = str(CONFIG).split('},')
+        print(con)
+        c = list(con)
+        for i in range(1,len(c)+1):
+            print(i)
+            context.bot.send_message(update.effective_chat.id,text=f'#{i}: 🏦 ✨{c[i-1]}')
+        
 def add_handler(dp:Dispatcher):
     hunt_handler = CommandHandler('PDLeaderboards', lb)
     dp.add_handler(hunt_handler)
