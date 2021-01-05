@@ -8,7 +8,7 @@ def c(update, context):
     choices = [
         "💥 You accidentally fell of the cliff 🧗🏼‍♀️ and broke both of your legs 🤕.", 
         "💥 You fell of the cliff 🧗🏼‍♀️ and landed hard on a rock.", 
-        "You successfully went down safely. You examined the plants and reported it to the scientests. The scientests had never seen such things before and you were rewarded $%s for a reward."%(ri)
+        "😇 You successfully went down safely. You examined the plants and reported it to the scientests. The scientests had never seen such things before and you were rewarded $%s for a reward."%(ri)
         ]
     msg = random.choice(choices)
     if msg == choices[2]:

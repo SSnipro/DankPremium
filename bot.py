@@ -3,11 +3,12 @@ from telegram.ext import Dispatcher,CommandHandler
 from telegram.ext import Updater
 from telegram.ext import MessageHandler, Filters
 from telegram import BotCommand
-from Currency import bal,work,fish
+from Currency import bal,work
 from Currency.UNRELEASED import twentyFour,leaderboards#,search
 from Currency.LIST import lst
 from Currency.LIST.Adventure import adventure
-from Currency.LIST.Adventure.Wilderness import hunt, cliff, wild, followPath
+from Currency.LIST.Adventure.Wilderness import hunt, cliff, wild
+from Currency.LIST.Adventure.Wilderness.followPath import followPath, fish 
 from Currency.Games import bj
 from Fun import punish,gif
 from Utils.get_file_info import animationInfo, fileInfo
