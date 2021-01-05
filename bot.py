@@ -7,7 +7,7 @@ from Currency import bal,work,fish
 from Currency.UNRELEASED import twentyFour,leaderboards#,search
 from Currency.LIST import lst
 from Currency.LIST.Adventure import adventure
-from Currency.LIST.Adventure.Wilderness import hunt
+from Currency.LIST.Adventure.Wilderness import hunt, cliff, wild, followPath
 from Currency.Games import bj
 from Fun import punish,gif
 from Utils.get_file_info import animationInfo, fileInfo
@@ -121,6 +121,9 @@ lst.add_handler(dispatcher)
 #search.add_handler(dispatcher)
 animationInfo.add_handler(dispatcher)
 fileInfo.add_handler(dispatcher)
+cliff.add_handler(dispatcher)
+followPath.add_handler(dispatcher)
+wild.add_handler(dispatcher)
 
 commands = work.get_command() + bal.get_command() + gif.get_command() + bj.get_command() + get_command() + hunt.get_command() + fish.get_command()
 bot = updater.bot

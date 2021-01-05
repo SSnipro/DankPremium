@@ -110,11 +110,11 @@ def buttonCallback(update,context):
 
     dest = place.random_destination()
 
-    # gameskb = [{
-    #             dest[0].name:f'sr:p:{dest[0].name}'},{
-    #             dest[1].name:f'sr:p:{dest[1].name}'},{
-    #             dest[2].name:f'sr:p:{dest[2].name}'
-    #         }]
+    gameskb = [{
+                dest[0].name:f'sr:p:{dest[0].name}'},{
+                dest[1].name:f'sr:p:{dest[1].name}'},{
+                dest[2].name:f'sr:p:{dest[2].name}'
+            }]
 
     if action == 'p':
         # 选择place
@@ -132,14 +132,14 @@ def buttonCallback(update,context):
                 bal.addcoins(user,p.coins)
             else: 
                 msg = 'die'
-            # query.edit_message_text(msg,reply_markup=util.getkb(gameskb))
+            query.edit_message_text(msg,reply_markup=util.getkb(gameskb))
     elif action == "f":
         msg = ""
         if query.data.split(':')[2] == "run":
             msg = "You ran away! Search again?"
         elif query.data.split(':')[2] == "sa":
             msg = f'Where do you want to search? {dest[0].name}, {dest[1].name} or {dest[2].name}?'
-        query.edit_message_text(msg,reply_markup=util.getkb(restartkb))
+        query.edit_message_text(msg,reply_markup=util.getkb(gameskb))
         
 
 

@@ -6,7 +6,7 @@ def arctic(update, context):
     msg = """You are at the arctic. A friend of yours called you and wanted you to go to the arcic research station but you need a snow-moto and a drill.
 Do you want to:
 
-Go to the cheaper store? /DCheaperStore
+Go to the cheaper store? /PDCheaperStore
 
 Or:
 
