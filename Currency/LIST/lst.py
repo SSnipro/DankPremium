@@ -1,4 +1,5 @@
 import random
+from telegram import BotCommand
 from telegram.ext import Dispatcher,CommandHandler
 from Currency import bal
 
@@ -17,4 +18,7 @@ def pog(update, context):
 def add_handler(dp:Dispatcher):
     list_handler = CommandHandler('PDList', pog)
     dp.add_handler(list_handler)
+
+def get_command():
+    return [BotCommand('pdlist','A list of things you can do!')]
 

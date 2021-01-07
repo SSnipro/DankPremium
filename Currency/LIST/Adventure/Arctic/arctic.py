@@ -11,7 +11,7 @@ Do you want to:
 
 Or:
 
-💎 Go to the better store with better supplies? /DBetterStore
+💎 Go to the better store with better supplies? /PDBetterStore
     """
     msg += "\n\nᴀᴜᴛʜᴏʀɪꜱᴇᴅ ʙʏ ɴᴏᴀʜ ❤️ \n作者：ɴᴏᴀʜ"
     update.message.reply_text(msg)
