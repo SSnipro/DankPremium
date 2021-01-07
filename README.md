@@ -18,6 +18,7 @@ Commands:
     🃏 /PDBJ - Play a Blackjack game against 🤖 DMII and your friends!
     🔫 /PDHunt - Hunt em down!!!!!!
     🎣 /PDFish - Try your luck by fishing!
+    🎁 /PDDaily - Collect your daily coins!
 
 Fun:
 
@@ -44,6 +45,5 @@ UNRELEASED:
     🕵🏻‍♂️ /PDSearch - Search the area with your team! Be prepared to fight stuff...
     🧮 /PDSolve - Just a normie calculator no big deal
     🛒 /PDShop - Buy equipment
-    🎁 /PDDaily - Collect your daily coins!
 
 --------------------
