@@ -11,7 +11,7 @@ def cheap(update, context):
     msg = random.choice(shopping)
     if msg == shopping[2]:
         bal.addcoins(user,7777)
-    msg += "\n\n\n\nᴀᴜᴛʜᴏʀɪꜱᴇᴅ ʙʏ ɴᴏᴀʜ ❤️ \n作者：ɴᴏᴀʜ"
+    msg += "\n\nᴀᴜᴛʜᴏʀɪꜱᴇᴅ ʙʏ ɴᴏᴀʜ ❤️ \n作者：ɴᴏᴀʜ"
     update.message.reply_text(msg)
 
 def add_handler(dp:Dispatcher):
