@@ -7,8 +7,9 @@ def cheap(update, context):
     shopping = [
         "💥 You bought fake supplies. Get rekt.", 
         "🚱 DRILL NO WORK????????", 
-        "✅ You made the right choice, good call! Got to your friend's research base and earned $7777."
+        "✅ You made the right choice, good call! Got to your friend's research base and earned $7777. But wait... someone stole your snow moto... what do you do?"
         ]
+    msg = random.choice(shopping)
     if msg == shopping[2]:
         bal.addcoins(user,7777)
     msg += "\n\nᴀᴜᴛʜᴏʀɪꜱᴇᴅ ʙʏ ɴᴏᴀʜ ❤️ \n作者：ɴᴏᴀʜ"
