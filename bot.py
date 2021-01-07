@@ -7,6 +7,8 @@ from Currency import bal,work
 from Currency.UNRELEASED import twentyFour,leaderboards#,search
 from Currency.LIST import lst
 from Currency.LIST.Adventure import adventure
+from Currency.LIST.Adventure.Arctic import arctic
+from Currency.LIST.Adventure.Arctic.Stores import Cheap,Better
 from Currency.LIST.Adventure.Wilderness import hunt, cliff, wild
 from Currency.LIST.Adventure.Wilderness.followPath import followPath, fish 
 from Currency.Games import bj
@@ -125,6 +127,9 @@ fileInfo.add_handler(dispatcher)
 cliff.add_handler(dispatcher)
 followPath.add_handler(dispatcher)
 wild.add_handler(dispatcher)
+arctic.add_handler(dispatcher)
+Better.add_handler(dispatcher)
+Cheap.add_handler(dispatcher)
 
 commands = work.get_command() + bal.get_command() + gif.get_command() + bj.get_command() + get_command() + hunt.get_command() + fish.get_command()
 bot = updater.bot
