@@ -98,7 +98,7 @@ def inv(update,context):
     if bal[uid]['inv'] == []:
         update.message.reply_text("You have nothing in your inventory.")
     else:
-        update.message.reply_text(f'Your inventory: {bal[uid]["inv"]}\n\nYour arrow count: {bal[uid]["arrow"]}')
+        update.message.reply_text(f"{bal[uid]['fname']}'s Inventory: {bal[uid]['inv']}\n\nx{bal[uid]['arrow']} Arrows 🏹")
         
 
 def add_handler(dp:Dispatcher):
