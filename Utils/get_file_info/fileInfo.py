@@ -78,10 +78,14 @@ def read_file(update, context):
             videoNote = VideoNote(file_id,unique_id,length,duration)
             update.message.reply_video_note( videoNote, caption='')
             context.bot.send_message(update.effective_chat.id, text=f"This is a video message.\n\n\nfile_id = '{file_id}',\n\nfile_unique_id = '{unique_id}',\n\nlength = {length}, \n\nduration = {duration}")
-    else:
+        if update.message.reply_to_message.text:
+            ttext = str(update.message.reply_to_message.text)
+            update.message.reply_text(f'{ttext}\n\nThis is a text.')
+    else: 
         u = str(update)
         u = dumps(eval(u),indent=2)
         update.message.reply_text(u)
+       
    
 def add_handler(dp:Dispatcher):
     dp.add_handler(CommandHandler('pdfinfo', read_file))
