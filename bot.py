@@ -3,8 +3,8 @@ from telegram.ext import Dispatcher,CommandHandler
 from telegram.ext import Updater
 from telegram.ext import MessageHandler, Filters
 from telegram import BotCommand
-from Currency import bal,work
-from Currency.UNRELEASED import twentyFour,leaderboards,shop#,search
+from Currency import bal,work,shop
+from Currency.UNRELEASED import twentyFour,leaderboards#,search
 from Currency.LIST import lst
 from Currency.LIST.Adventure import adventure
 from Currency.LIST.Adventure.Arctic import arctic
@@ -36,6 +36,7 @@ Commands:
 
         💼 /PDWork - Submit your work to your boss. Depending on your work quality, you will either receive an reward or punishment.
         🏦 /PDBal - Check your current balence!
+        👜 /PDInv - Check your inventory!
         🃏 /PDBJ - Play a Blackjack game against 🤖 DMII and your friends!
         🔫 /PDHunt - Hunt em down!!!!!!
         🎣 /PDFish - Try your luck by fishing!

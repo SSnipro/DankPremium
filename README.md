@@ -14,6 +14,7 @@ Commands:
     Currency:
 
     💼 /PDWork - Submit your work to your boss. Depending on your work quality, you will either receive an reward or punishment.
+    👜 /PDInv - Check your inventory!
     🏦 /PDBal - Check your current balence!
     🃏 /PDBJ - Play a Blackjack game against 🤖 DMII and your friends!
     🔫 /PDHunt - Hunt em down!!!!!!
