@@ -19,5 +19,5 @@ Do you want to go back and explore the planets?
     update.message.reply_text(msg)
 
 def add_handler(dp:Dispatcher):
-    w_handler = CommandHandler('/PDFly', w)
+    w_handler = CommandHandler('PDFly', w)
     dp.add_handler(w_handler)
