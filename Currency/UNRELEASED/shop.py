@@ -5,27 +5,60 @@ from Currency import bal
 
 
 def shop(update, context):
-    user = update.message.from_user
-    godif = random.randint(100,250)
-    reward = ["Yay you got 200 XP. Cool? 你收获了 200 XP。棒棒哒~ ", "You got 50 XP. 你获得了 50 XP。", "You got Nothing. Git Gud. 你一无所成。再修炼100年吧～ ", "Let God decide. 让神决定你的命运吧。 \nYou got lucky dunky! God has gifted you %s XP. 你的幸运终于来了！神给予了你 （上面英文版写了，懒得再写一遍了） XP。"%(godif)]
-    msg = random.choice(reward)
-    if msg == reward[0]:
-        bal.addcoins(user,200)
-    elif msg == reward[1]:
-        bal.addcoins(user,50)
-    elif msg == reward[2]:
-        bal.addcoins(user,0)
-    elif msg == reward[3]:
-        bal.addcoins(user,godif)
-    msg += "\n\nAuthorised By Noah <3\n作者：Noah"
+    user = update.effective_user
+    if len(context.args) == 0:
+        msg = """The 🤖 DMII Market
+
+Item name: Space Ticket | Go to /PDSpace to buy it if you don't have one!
+
+----------------------------------------------------------
+
+Item Number: 2 | Item name: GoldPass | Item Price: $500,000
+
+Item Number: 3 | Item name: Crossbow | Item Price: $50,000
+
+Item Number: 4 | Item name: Arrow | Item Price: $1,000
+
+----------------------------------------------------------
+
+To buy an Item, do /PDShop buy [Item Number] or [Item name] 
+To buy multiple arrows at once, do /PDShop buy 4 [Number]
+"""
+    else:
+        uid = str(user.id)
+        print(context.args)
+        if context.args[0] == 'buy':
+            if context.args[1] == 'crossbow' or context.args[1] == '3':
+                if bal.bal[uid]['coins'] >= 50000:
+                    msg = 'Purchase Successful! Crossbow is now in your inventory.'
+                    bal.additem(user,'Crossbow')
+                    bal.addcoins(user,-50000)
+                else:
+                    msg = "Purchase Unsuccessful. You don't have enough coins."
+            elif context.args[1] == 'goldpass' or context.args[1] == '2':
+                if bal.bal[uid]['coins'] >= 500000:
+                    msg = 'Purchase Successful! Goldpass is now in your inventory.'
+                    bal.additem(user,'Gold Pass')
+                    bal.addcoins(user,-500000)
+                else:
+                    msg = "Purchase Unsuccessful. You don't have enough coins."
+            elif context.args[1] == 'arrow' or context.args[1] == '4':
+                if len(context.args) == 3:
+                    if bal.bal[uid]['coins'] >= 1000 * int(context.args[2]):
+                        msg = 'Purchase Successful! %s of that item is now in your inventory.'%(context.args[2])
+                        bal.addarrows(user,int(context.args[2]))
+                        bal.addcoins(user,-1000*int(context.args[2]))
+                    else:
+                        msg = 'Purchase Successful! one arrow is now in your inventory.'
+                        bal.addarrows(user,-1000)
+    msg += "\n\nᴀᴜᴛʜᴏʀɪꜱᴇᴅ ʙʏ ɴᴏᴀʜ ❤️ \n作者：ɴᴏᴀʜ"
     update.message.reply_text(msg)
-    godif = random.randint(100,250)
 
 
 def add_handler(dp:Dispatcher):
-    reward_handler = CommandHandler('PDReward', shop)
+    reward_handler = CommandHandler('PDShop', shop)
     dp.add_handler(reward_handler)
 
 
 def get_command():
-    return [BotCommand('pdreward','Get rewards!')]
+    return [BotCommand('pdshop','shop shop')]

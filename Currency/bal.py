@@ -23,6 +23,7 @@ def check(user):
         bal[uid]['count'] = 0
         bal[uid]['dailytime'] = datetime.now().strftime('%Y/%m/%d %H:%M:%S')
         bal[uid]['inv'] = [] 
+        bal[uid]['arrow'] = 0
 
 
 def get_count(user):
@@ -32,6 +33,10 @@ def get_count(user):
 def get_coins(user):
     uid = str(user.id)
     return bal[uid]['coins']
+
+def get_arrows(user): 
+    uid = str(user.id)
+    return bal[uid]['inv']['arrow']
 
 def balence(update, context):
     user = update.message.from_user
@@ -56,6 +61,13 @@ def additem(user,t):
     check(user)
     uid = str(user.id)
     bal[uid]['inv'].append(t)
+    config.CONFIG['bal'] = bal 
+    config.save_config()
+
+def addarrows(user,t):
+    check(user)
+    uid = str(user.id)
+    bal[uid]['arrow'] += t
     config.CONFIG['bal'] = bal 
     config.save_config()
 
@@ -86,7 +98,7 @@ def inv(update,context):
     if bal[uid]['inv'] == []:
         update.message.reply_text("You have nothing in your inventory.")
     else:
-        update.message.reply_text(bal[uid]['inv'])
+        update.message.reply_text(f'Your inventory: {bal[uid]["inv"]}\n\nYour arrow count: {bal[uid]["arrow"]}')
         
 
 def add_handler(dp:Dispatcher):
