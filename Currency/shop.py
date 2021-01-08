@@ -57,6 +57,8 @@ To buy multiple arrows at once, do /PDShop buy 4 [Number]
                         bal.addarrows(user,1)
                     else:
                         msg = "Purchase Unsuccessful. You don't have enough coins."
+        else: 
+            msg = 'Invaid'
     msg += "\n\nᴀᴜᴛʜᴏʀɪꜱᴇᴅ ʙʏ ɴᴏᴀʜ ❤️ \n作者：ɴᴏᴀʜ"
     update.message.reply_text(msg)
 
