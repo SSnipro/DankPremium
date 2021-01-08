@@ -53,7 +53,8 @@ To buy multiple arrows at once, do /PDShop buy 4 [Number]
                 else:
                     if bal.bal[uid]['coins'] >= 1000:
                         msg = 'Purchase Successful! one arrow is now in your inventory.'
-                        bal.addarrows(user,-1000)
+                        bal.addcoins(user,-1000)
+                        bal.addarrows(user,1)
                     else:
                         msg = "Purchase Unsuccessful. You don't have enough coins."
     msg += "\n\nᴀᴜᴛʜᴏʀɪꜱᴇᴅ ʙʏ ɴᴏᴀʜ ❤️ \n作者：ɴᴏᴀʜ"
