@@ -11,6 +11,8 @@ from Currency.LIST.Adventure.Arctic import arctic
 from Currency.LIST.Adventure.Arctic.Stores import Cheap,Better
 from Currency.LIST.Adventure.Wilderness import hunt, cliff, wild
 from Currency.LIST.Adventure.Wilderness.followPath import followPath, fish 
+from Currency.LIST.Adventure.Space import space, decline
+from Currency.LIST.Adventure.Space.Yes import accept, fly
 from Currency.Games import bj
 from Fun import punish,gif
 from Utils.get_file_info import animationInfo, fileInfo
@@ -130,6 +132,10 @@ wild.add_handler(dispatcher)
 arctic.add_handler(dispatcher)
 Better.add_handler(dispatcher)
 Cheap.add_handler(dispatcher)
+space.add_handler(dispatcher)
+decline.add_handler(dispatcher)
+accept.add_handler(dispatcher)
+fly.add_handler(dispatcher)
 
 commands = work.get_command() + bal.get_command() + gif.get_command() + bj.get_command() + get_command() + hunt.get_command() + fish.get_command() + lst.get_command()
 bot = updater.bot

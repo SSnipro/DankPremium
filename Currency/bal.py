@@ -22,6 +22,7 @@ def check(user):
         bal[uid]['coins'] = 0
         bal[uid]['count'] = 0
         bal[uid]['dailytime'] = datetime.now().strftime('%Y/%m/%d %H:%M:%S')
+        bal[uid]['inv'] = [] 
 
 
 def get_count(user):
@@ -51,6 +52,12 @@ def addcoins(user,coins):
     config.CONFIG['bal'] = bal 
     config.save_config()
 
+def additem(user,t):
+    check(user)
+    uid = str(user.id)
+    bal[uid]['inv'].append(t)
+    config.CONFIG['bal'] = bal 
+    config.save_config()
 
 def get_dailytime(uid):
     return datetime.strptime(bal[uid]['dailytime'],'%Y/%m/%d %H:%M:%S')
@@ -72,9 +79,20 @@ def daily(update,context):
     else:
         update.message.reply_text("one day didn't pass yet dummy")
 
+def inv(update,context):
+    user = update.effective_user
+    uid = str(user.id)
+    check(user)    
+    if bal[uid]['inv'] == []:
+        update.message.reply_text("You have nothing in your inventory.")
+    else:
+        update.message.reply_text(bal[uid]['inv'])
+        
+
 def add_handler(dp:Dispatcher):
     dp.add_handler(CommandHandler('PDBal', balence))
     dp.add_handler(CommandHandler('PDDaily', daily))
+    dp.add_handler(CommandHandler('PDInv', inv))
 
 def get_command():
     return [BotCommand('pdbal','Check your bank account!'),('pddaily','Claim your daily coins!')]
