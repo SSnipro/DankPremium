@@ -11,7 +11,14 @@ def youtubemusic(update,context):
         update.message.reply_text("help!")
 
 def add_handler(dp:Dispatcher):
-    dp.add_handler(CommandHandler('pdytmusic', youtubemusic))
+    dp.add_handler(CommandHandler('pd_yt_music', youtubemusic))
 
 if __name__ == "__main__":
-    url = "https://www.youtube.com/watch?v=iqL1BLzn3qc"
+    url = "https://www.youtube.com/watch?v=BezpUnoZObw"
+    video = pafy.new(url)
+    for n in video.streams:
+        print(n)
+    bestaudio = video.getbestaudio(preftype="m4a")
+    print(bestaudio)
+    file_path = f"/tmp/{bestaudio.title}.{bestaudio.extension}"
+    # bestaudio.download(filepath=file_path)
