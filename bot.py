@@ -15,9 +15,9 @@ from Currency.LIST.Adventure.Space import space, decline
 from Currency.LIST.Adventure.Space.Yes import accept, fly
 from Currency.Games import bj
 from Fun import punish,gif
-from Utils.get_file_info import animationInfo, fileInfo
+from Utilities.get_file_info import animationInfo, fileInfo
 import os
-from Utils import mysystemd
+from Utilities import mysystemd
 
 def start(update, context):
     update.message.reply_text("""
