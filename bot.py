@@ -15,9 +15,10 @@ from Currency.LIST.Adventure.Space import space, decline
 from Currency.LIST.Adventure.Space.Yes import accept, fly
 from Currency.Games import bj
 from Fun import punish,gif
+from Utilities import mysystemd, youtubeMusic
 from Utilities.get_file_info import animationInfo, fileInfo
 import os
-from Utilities import mysystemd
+
 
 def start(update, context):
     update.message.reply_text("""
@@ -138,6 +139,7 @@ decline.add_handler(dispatcher)
 accept.add_handler(dispatcher)
 fly.add_handler(dispatcher)
 shop.add_handler(dispatcher)
+youtubeMusic.add_handler(dispatcher)
 
 commands = work.get_command() + bal.get_command() + gif.get_command() + bj.get_command() + get_command() + hunt.get_command() + fish.get_command() + lst.get_command()
 bot = updater.bot
