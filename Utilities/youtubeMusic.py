@@ -1,14 +1,17 @@
-import random
-from telegram.ext import Dispatcher,CommandHandler
+from telegram.ext import Dispatcher,CommandHandler,CallbackQueryHandler
 from telegram import BotCommand
-from Currency import bal
+import pafy
 
-def ym(update,context):
-    pass
+def youtubemusic(update,context):
+    if len(context.args) == 1:
+        url = context.args[0]
+        video = pafy.new(url)
+        update.message.reply_text(str(video) )
+    else:
+        update.message.reply_text("help!")
 
 def add_handler(dp:Dispatcher):
-    reward_handler = CommandHandler('pdytmusic', ym)
-    dp.add_handler(reward_handler)
+    dp.add_handler(CommandHandler('pdytmusic', youtubemusic))
 
 if __name__ == "__main__":
-    pass
+    url = "https://www.youtube.com/watch?v=iqL1BLzn3qc"
