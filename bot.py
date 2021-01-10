@@ -4,7 +4,7 @@ from telegram.ext import Updater
 from telegram.ext import MessageHandler, Filters
 from telegram import BotCommand
 from Currency import bal,work,shop
-from Currency.UNRELEASED import twentyFour,leaderboards#,search
+from Currency.UNRELEASED import twentyFour,leaderboards,search
 from Currency.LIST import lst
 from Currency.LIST.Adventure import adventure
 from Currency.LIST.Adventure.Arctic import arctic
@@ -15,7 +15,7 @@ from Currency.LIST.Adventure.Space import space, decline
 from Currency.LIST.Adventure.Space.Yes import accept, fly
 from Currency.Games import bj
 from Fun import punish,gif
-from Utilities import mysystemd, youtubeMusic
+from Utilities import mysystemd, youtubeMusic, team
 from Utilities.get_file_info import animationInfo, fileInfo
 import os
 
@@ -125,7 +125,7 @@ fish.add_handler(dispatcher)
 leaderboards.add_handler(dispatcher)
 adventure.add_handler(dispatcher)
 lst.add_handler(dispatcher)
-#search.add_handler(dispatcher)
+search.add_handler(dispatcher)
 animationInfo.add_handler(dispatcher)
 fileInfo.add_handler(dispatcher)
 cliff.add_handler(dispatcher)
@@ -140,6 +140,7 @@ accept.add_handler(dispatcher)
 fly.add_handler(dispatcher)
 shop.add_handler(dispatcher)
 youtubeMusic.add_handler(dispatcher)
+team.add_handler(dispatcher)
 
 commands = work.get_command() + bal.get_command() + gif.get_command() + bj.get_command() + get_command() + hunt.get_command() + fish.get_command() + lst.get_command()
 bot = updater.bot

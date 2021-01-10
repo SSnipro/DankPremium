@@ -3,7 +3,7 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup, BotCommand
 from datetime import datetime,timedelta
 import random
 from Currency import bal
-from Utils import team,place,util
+from Utilities import team,place,util
 
 
 # 文档
@@ -104,7 +104,7 @@ def buttonCallback(update,context):
     }]
 
     fightkb = [{
-        'Fight!':'sr:p:fight',
+        'Fight!':'sr:p:f',
         'Run!':'sr:f:run'
     }]
 
@@ -117,22 +117,24 @@ def buttonCallback(update,context):
             }]
 
     if action == 'p':
-        # 选择place
         placename = query.data.split(':')[2]
         p = place.Place(placename)
-        if p.boss == []:
-            query.edit_message_text(f'You searched the {p.name} and found ${p.coins}',reply_markup=util.getkb(restartkb) )
-            bal.addcoins(user,p.coins)
-        else:
+        if placename == 'f':
             query.edit_message_text(f"You searched the {p.name} and found...\n\n🥊 BOSS FIGHT!\n\nIt's {p.boss.name} !\n\n♥️ HP: {p.boss.hp}\n⚔️ Attack: {p.boss.atk}\n🛡 Defence: {p.boss.defence}\n⚡️ Speed: {p.boss.speed} \n\nWanna know what he looks like? Check out {p.boss.image}",reply_markup=util.getkb(fightkb))
-            if team.teams[chatid][team] == {}:
-                team.create_team(uid,chatid,random.randint(1,100))
-            if team.members[chatid][uid]['spd'] >= p.boss.speed:
-                msg = f'You won the fight!\n\nYou searched the {p.name} and found ${p.coins}! Search again?'
-                bal.addcoins(user,p.coins)
-            else: 
-                msg = 'die'
+            # if team.teams[chatid][team] == {}:
+            #     team.create_team(uid,chatid,random.randint(1,100))
+            # if team.members[chatid][uid]['spd'] >= p.boss.speed:
+            #     msg = f'You won the fight!\n\nYou searched the {p.name} and found ${p.coins}! Search again?'
+            #     bal.addcoins(user,p.coins)
+            # else: 
+            #     msg = 'die'
+            msg = f'You won the fight!\n\nYou searched the {p.name} and found ${p.coins}! Search again?'
             query.edit_message_text(msg,reply_markup=util.getkb(gameskb))
+        # 选择place
+        else:
+            if p.boss == []:
+                query.edit_message_text(f'You searched the {p.name} and found ${p.coins}',reply_markup=util.getkb(restartkb) )
+                bal.addcoins(user,p.coins)
     elif action == "f":
         msg = ""
         if query.data.split(':')[2] == "run":

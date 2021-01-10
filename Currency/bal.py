@@ -22,9 +22,12 @@ def check(user):
         bal[uid]['coins'] = 0
         bal[uid]['count'] = 0
         bal[uid]['dailytime'] = datetime.now().strftime('%Y/%m/%d %H:%M:%S')
-        bal[uid]['inv'] = [] 
-        bal[uid]['arrow'] = 0
-
+        bal[uid]['inv'] = {
+            'perks': [],
+            'weapons': [],
+            'items': [],
+            'arrow': 0
+        } 
 
 def get_count(user):
     uid = str(user.id)
@@ -60,14 +63,28 @@ def addcoins(user,coins):
 def additem(user,t):
     check(user)
     uid = str(user.id)
-    bal[uid]['inv'].append(t)
+    bal[uid]['inv']['items'].append(t)
     config.CONFIG['bal'] = bal 
     config.save_config()
 
 def addarrows(user,t):
     check(user)
     uid = str(user.id)
-    bal[uid]['arrow'] += t
+    bal[uid]['inv']['arrow'] += t
+    config.CONFIG['bal'] = bal 
+    config.save_config()
+
+def addweapon(user,t):
+    check(user)
+    uid = str(user.id)
+    bal[uid]['inv']['weapons'] += t
+    config.CONFIG['bal'] = bal 
+    config.save_config()
+
+def addperks(user,t):
+    check(user)
+    uid = str(user.id)
+    bal[uid]['inv']['perks'] += t
     config.CONFIG['bal'] = bal 
     config.save_config()
 
@@ -95,10 +112,10 @@ def inv(update,context):
     user = update.effective_user
     uid = str(user.id)
     check(user)    
-    if bal[uid]['inv'] == []:
+    if bal[uid]['inv']['items'] == [] and bal[uid]['inv']['weapons'] == [] and bal[uid]['inv']['arrow'] == 0:
         update.message.reply_text("You have nothing in your inventory.")
     else:
-        update.message.reply_text(f"{bal[uid]['fname']}'s Inventory: {bal[uid]['inv']}\n\nx{bal[uid]['arrow']} Arrows 🏹")
+        update.message.reply_text(f"{bal[uid]['fname']}'s Inventory \n\nPerks: {bal[uid]['inv']['perks']}\n\nItems: {bal[uid]['inv']['items']}\nWeapons: {bal[uid]['inv']['weapons']}\nx{bal[uid]['inv']['arrow']} Arrows 🏹")
         
 
 def add_handler(dp:Dispatcher):

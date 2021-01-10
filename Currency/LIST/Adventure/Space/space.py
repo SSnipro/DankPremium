@@ -4,7 +4,7 @@ from Currency import bal
 
 def w(update, context):
     uid = str(update.effective_user.id)
-    if not '🎫 Space Ticket' in bal.bal[uid]['inv']:
+    if not '🎫 Space Ticket' in bal.bal[uid]['inv']['items']:
         msg = """🚀 You arrived at the DMII rocket launch station and you wanted to buy a ticket to go to space. It costs $100000 but once you buy the ticket, you will have access to space forever. 
 
 🙉 Do you want to buy the ticket?

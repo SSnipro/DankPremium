@@ -4,7 +4,7 @@ from Currency import bal
 
 def w(update, context):
     uid = str(update.effective_user.id)
-    if not '🎫 Space Ticket' in bal.bal[uid]['inv']:
+    if not '🎫 Space Ticket' in bal.bal[uid]['inv']['items']:
         msg = "You declined the offer."
     else:
         msg = "Invaid command: No offers to decline"

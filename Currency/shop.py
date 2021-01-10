@@ -31,14 +31,14 @@ To buy multiple arrows at once, do /PDShop buy 4 [Number]
             if context.args[1] == 'crossbow' or context.args[1] == '3':
                 if bal.bal[uid]['coins'] >= 50000:
                     msg = 'Purchase Successful! Crossbow is now in your inventory.'
-                    bal.additem(user,'🏹 Crossbow')
+                    bal.addweapon(user,'🏹 Crossbow')
                     bal.addcoins(user,-50000)
                 else:
                     msg = "Purchase Unsuccessful. You don't have enough coins."
             elif context.args[1] == 'goldpass' or context.args[1] == '2':
                 if bal.bal[uid]['coins'] >= 500000:
                     msg = 'Purchase Successful! Goldpass is now in your inventory.'
-                    bal.additem(user,'🔑 Gold Pass')
+                    bal.addperks(user,'🔑 Gold Pass')
                     bal.addcoins(user,-500000)
                 else:
                     msg = "Purchase Unsuccessful. You don't have enough coins."
