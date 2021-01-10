@@ -115,7 +115,7 @@ def inv(update,context):
     if bal[uid]['inv']['items'] == [] and bal[uid]['inv']['weapons'] == [] and bal[uid]['inv']['arrow'] == 0:
         update.message.reply_text("You have nothing in your inventory.")
     else:
-        update.message.reply_text(f"👜 ✨{bal[uid]['fname']}'s Inventory \n\n⭐️ Perks: {bal[uid]['inv']['perks']}\n\n🧸 Items: {bal[uid]['inv']['items']}\n\n⚔️ Weapons: {bal[uid]['inv']['weapons']}\n\n🏹 Arrows: x{bal[uid]['inv']['arrow']}")
+        update.message.reply_text(f"👜 ✨{bal[uid]['fname']}'s Inventory \n\n\n🏦 Bank ID: {uid}\n\n\n💰 Coins: ${bal[uid]['coins']} ✨\n\n⭐️ Perks: {bal[uid]['inv']['perks']}\n\n🧸 Items: {bal[uid]['inv']['items']}\n\n⚔️ Weapons: {bal[uid]['inv']['weapons']}\n\n🏹 Arrows: x{bal[uid]['inv']['arrow']}")
         
 
 def add_handler(dp:Dispatcher):
