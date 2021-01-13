@@ -5,7 +5,7 @@ from Currency import bal
 def w(update, context):
     uid = str(update.effective_user.id)
     if '🎫 Space Ticket' in bal.bal[uid]['inv']['items']:
-        msg = """flying... fly... fly...
+        msg = """F L Y I N G . . .
         
 Oh? You came past two planets you've never seen before.
 

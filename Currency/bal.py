@@ -23,11 +23,19 @@ def check(user):
         bal[uid]['count'] = 0
         bal[uid]['dailytime'] = datetime.now().strftime('%Y/%m/%d %H:%M:%S')
         bal[uid]['inv'] = {
-            'perks': [],
-            'weapons': [],
-            'items': [],
-            'arrow': 0
-        } 
+            'perks': {
+                'admin': "",
+                'goldpass': "",
+                'custompass': ""
+            },
+            'weapons': {
+                'crossbow': "",
+                'arrow': 0
+            },
+            'items': {
+                'spaceticket': "- 🎫 Space Ticket -- [INACTIVE]" 
+            },
+        }
 
 def get_count(user):
     uid = str(user.id)
@@ -39,7 +47,7 @@ def get_coins(user):
 
 def get_arrows(user): 
     uid = str(user.id)
-    return bal[uid]['inv']['arrow']
+    return bal[uid]['inv']['weapons']['arrow']
 
 def balence(update, context):
     user = update.message.from_user
@@ -60,31 +68,31 @@ def addcoins(user,coins):
     config.CONFIG['bal'] = bal 
     config.save_config()
 
-def additem(user,t):
+def additem(user,t,r):
     check(user)
     uid = str(user.id)
-    bal[uid]['inv']['items'].append(t)
+    bal[uid]['inv']['items'][r] = t
     config.CONFIG['bal'] = bal 
     config.save_config()
 
 def addarrows(user,t):
     check(user)
     uid = str(user.id)
-    bal[uid]['inv']['arrow'] += t
+    bal[uid]['inv']['weapons']['arrow'] += t
     config.CONFIG['bal'] = bal 
     config.save_config()
 
-def addweapon(user,t):
+def addweapon(user,t,r):
     check(user)
     uid = str(user.id)
-    bal[uid]['inv']['weapons'] += t
+    bal[uid]['inv']['weapons'][r] = t
     config.CONFIG['bal'] = bal 
     config.save_config()
 
-def addperks(user,t):
+def addperks(user,t,r):
     check(user)
     uid = str(user.id)
-    bal[uid]['inv']['perks'] += t
+    bal[uid]['inv']['perks'][r] = t
     config.CONFIG['bal'] = bal 
     config.save_config()
 
@@ -112,10 +120,40 @@ def inv(update,context):
     user = update.effective_user
     uid = str(user.id)
     check(user)    
-    if bal[uid]['inv']['items'] == [] and bal[uid]['inv']['weapons'] == [] and bal[uid]['inv']['arrow'] == 0:
+    if bal[uid]['inv']['items'] == {} and bal[uid]['inv']['weapons'] == {}  and bal[uid]['inv']['perks'] == {}:
         update.message.reply_text("You have nothing in your inventory.")
     else:
-        update.message.reply_text(f"👜 ✨{bal[uid]['fname']}'s Inventory \n\n\n🏦 Bank ID: {uid}\n\n\n💰 Coins: ${bal[uid]['coins']} ✨\n\n⭐️ Perks: {bal[uid]['inv']['perks']}\n\n🧸 Items: {bal[uid]['inv']['items']}\n\n⚔️ Weapons: {bal[uid]['inv']['weapons']}\n\n🏹 Arrows: x{bal[uid]['inv']['arrow']}")
+        update.message.reply_text(f"""👜 ✨{bal[uid]['fname']}'s Inventory 
+        
+        
+🏦 Bank ID: {uid}
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=    
+    
+💰 Coins: ${bal[uid]['coins']} ✨
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+⭐️ Perks: 
+
+{bal[uid]['inv']['perks']['admin']}
+{bal[uid]['inv']['perks']['custompass']}
+{bal[uid]['inv']['perks']['goldpass']}
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+🧸 Items: 
+
+{bal[uid]['inv']['items']['spaceticket']}
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+⚔️ Weapons: 
+
+{bal[uid]['inv']['weapons']['crossbow']} (x{bal[uid]['inv']['weapons']['arrow']} Arrows)
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=
+    """)
         
 
 def add_handler(dp:Dispatcher):
