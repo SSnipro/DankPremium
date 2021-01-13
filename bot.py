@@ -143,7 +143,7 @@ shop.add_handler(dispatcher)
 youtubeMusic.add_handler(dispatcher)
 team.add_handler(dispatcher)
 
-commands = work.get_command() + bal.get_command() + gif.get_command() + bj.get_command() + get_command() + hunt.get_command() + fish.get_command() + lst.get_command() + shop.get_command
+commands = work.get_command() + bal.get_command() + gif.get_command() + bj.get_command() + get_command() + hunt.get_command() + fish.get_command() + lst.get_command() + shop.get_command()
 bot = updater.bot
 bot.set_my_commands(commands)
 
