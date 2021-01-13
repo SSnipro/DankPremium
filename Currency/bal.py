@@ -24,12 +24,12 @@ def check(user):
         bal[uid]['dailytime'] = datetime.now().strftime('%Y/%m/%d %H:%M:%S')
         bal[uid]['inv'] = {
             'perks': {
-                'admin': "",
-                'goldpass': "",
-                'custompass': ""
+                'admin': "- Non - Admin",
+                'goldpass': "- No Gold Pass",
+                'custompass': "- No Custom Pass"
             },
             'weapons': {
-                'crossbow': "",
+                'crossbow': "- No crossbow",
                 'arrow': 0
             },
             'items': {
