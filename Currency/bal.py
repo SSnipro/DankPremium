@@ -21,6 +21,9 @@ def check(user):
         bal[uid]['fname'] = fname
         bal[uid]['coins'] = 0
         bal[uid]['count'] = 0
+        bal[uid]['codes'] = {
+            'code': False
+        }
         bal[uid]['dailytime'] = datetime.now().strftime('%Y/%m/%d %H:%M:%S')
         bal[uid]['inv'] = {
             'perks': {
@@ -156,10 +159,24 @@ def inv(update,context):
     """)
         
 
+def usecodes(update,context):
+    user = update.effective_user
+    uid = str(user.id)
+    check(user)
+    if len(context.args) == 0:
+        update.message.reply_text('Invaid code')
+    elif context.args[0] == 'hf7327g8f32gwG' and bal[uid]['codes']['code'] == False:
+        update.message.reply_text('You used a code to claim $1000000.')
+        bal[uid]['codes']['code'] = True
+        addcoins(user,1000000)
+    else:
+        update.message.reply_text('Invaid code: already claimed')
+
 def add_handler(dp:Dispatcher):
     dp.add_handler(CommandHandler('PDBal', balence))
     dp.add_handler(CommandHandler('PDDaily', daily))
     dp.add_handler(CommandHandler('PDInv', inv))
+    dp.add_handler(CommandHandler('PDUseCodes', usecodes))
 
 def get_command():
     return [BotCommand('pdbal','Check your bank account!'),('pddaily','Claim your daily coins!')]

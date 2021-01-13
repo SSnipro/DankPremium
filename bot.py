@@ -3,7 +3,7 @@ from telegram.ext import Dispatcher,CommandHandler
 from telegram.ext import Updater
 from telegram.ext import MessageHandler, Filters
 from telegram import BotCommand
-from Currency import bal,work,shop, usecodes
+from Currency import bal,work,shop
 from Currency.UNRELEASED import twentyFour,leaderboards,search
 from Currency.LIST import lst
 from Currency.LIST.Adventure import adventure
@@ -141,7 +141,6 @@ fly.add_handler(dispatcher)
 shop.add_handler(dispatcher)
 youtubeMusic.add_handler(dispatcher)
 team.add_handler(dispatcher)
-usecodes.add_handler(dispatcher)
 
 commands = work.get_command() + bal.get_command() + gif.get_command() + bj.get_command() + get_command() + hunt.get_command() + fish.get_command() + lst.get_command()
 bot = updater.bot
