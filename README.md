@@ -46,5 +46,6 @@ UNRELEASED:
 
     🕵🏻‍♂️ /PDSearch - Search the area with your team! Be prepared to fight stuff...
     🧮 /PDSolve - Just a normie calculator no big deal
+    👔 /PDUseCodes - gifted codes!
 
 --------------------

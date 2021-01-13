@@ -179,4 +179,4 @@ def add_handler(dp:Dispatcher):
     dp.add_handler(CommandHandler('PDUseCodes', usecodes))
 
 def get_command():
-    return [BotCommand('pdbal','Check your bank account!'),('pddaily','Claim your daily coins!')]
+    return [BotCommand('pdbal','Check your bank account!'),('pddaily','Claim your daily coins!'),('pddaily','Collect your daily coins!'),('pdinv','Check your current inventory!')]
