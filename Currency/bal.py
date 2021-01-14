@@ -1,8 +1,9 @@
 import config
 import random
+from Utilities import util
 from datetime import datetime,timedelta
-from telegram.ext import Dispatcher,CommandHandler, Filters
-from telegram import BotCommand, Animation
+from telegram.ext import Dispatcher,CommandHandler, Filters, CallbackQueryHandler
+from telegram import BotCommand, Animation, InlineKeyboardButton, InlineKeyboardMarkup
 
 #  {
 #       uid:{
@@ -27,17 +28,75 @@ def check(user):
         bal[uid]['dailytime'] = datetime.now().strftime('%Y/%m/%d %H:%M:%S')
         bal[uid]['inv'] = {
             'perks': {
-                'admin': "- Non - Admin",
-                'goldpass': "- No Gold Pass",
-                'custompass': "- No Custom Pass"
+                'admin': "- Non ❌ Admin",
+                'goldpass': "- ❌ Gold Pass",
+                'custompass': "- ❌ Custom Pass"
             },
             'weapons': {
-                'crossbow': "- No crossbow",
+                'crossbow': "- ❌ Crossbow",
                 'arrow': 0
             },
             'items': {
                 'spaceticket': "- 🎫 Space Ticket -- [INACTIVE]" 
             },
+        }
+        bal[uid]['stats'] = {
+            'rolename': "",
+            'types': [],
+            'moves': {
+                '1':{
+                    'name':"",
+                    'type':"",
+                    'power':"",
+                    'acc':50
+                },
+                '2':{
+                    'name':"",
+                    'type':"",
+                    'power':"",
+                    'acc':50
+                },
+                '3':{
+                    'name':"",
+                    'type':"",
+                    'power':"",
+                    'acc':50
+                },
+                '4':{
+                    'name':"",
+                    'type':"",
+                    'power':"",
+                    'acc':50
+                },
+                '5':{
+                    'name':"",
+                    'type':"",
+                    'power':"",
+                    'acc':50
+                },
+                '6':{
+                    'name':"",
+                    'type':"",
+                    'power':"",
+                    'acc':50
+                },
+            },
+            'atk': {
+                'max': 50,
+                'current': 50
+            },
+            'hp': {
+                'max': 50,
+                'current': 50
+            },
+            'defence': {
+                'max': 50,
+                'current': 50
+            },
+            'speed': {
+                'max': 50,
+                'current': 50
+            }
         }
 
 def get_count(user):
@@ -172,11 +231,138 @@ def usecodes(update,context):
     else:
         update.message.reply_text('Invaid code: already claimed')
 
+def stats(update,context):
+    user = update.effective_user
+    uid = str(user.id)
+    fname = user.first_name
+    if bal[uid]['stats']['atk']['max'] == 50 and bal[uid]['stats']['defence']['max'] == 50 and bal[uid]['stats']['speed']['max'] == 50:
+        kbs = [{
+            '🦾 The Tank':'st:tank',
+            '🗡 The Warrior':'st:warrior'},{
+            '⚡️ The Flash':'st:flash',
+            '💎 The Thief':'st:thief'
+        }]
+        kb = util.getkb(kbs)
+        msg = f"""Choose your role! 
+    
+(Note: Once you've picked your role, you can only change it one more time, pick carefully!)
+    
+🦾 The Tank
+
+💥 Attack: 50
+🛡 Defence: 150
+♥️ HP: 125
+⚡️ Speed: 25
+
+🗡 The Warrior
+
+💥 Attack: 90
+🛡 Defence: 90
+♥️ HP: 95
+⚡️ Speed: 85
+
+⚡️ The Flash
+
+💥 Attack: 130
+🛡 Defence: 30
+♥️ HP: 30
+⚡️ Speed: 160
+
+💎 The Thief
+
+💥 Attack: 140
+🛡 Defence: 70
+♥️ HP: 50
+⚡️ Speed: 120
+
+
+     """
+        update.message.reply_text(msg,reply_markup=kb)
+    else: 
+        msg = f"""{fname}'s stats:
+
+{bal[uid]['stats']['rolename']}
+
+Types: {bal[uid]['stats']['types']}
+
+Status:
+
+💥 Attack: {bal[uid]['stats']['atk']['current']} / {bal[uid]['stats']['atk']['max']}
+🛡 Defence: {bal[uid]['stats']['defence']['current']} / {bal[uid]['stats']['defence']['max']}
+♥️ HP: {bal[uid]['stats']['hp']['current']} / {bal[uid]['stats']['hp']['max']}
+⚡️ Speed: {bal[uid]['stats']['speed']['current']} / {bal[uid]['stats']['speed']['max']}
+    """
+        update.message.reply_text(msg)
+    
+
+def buttonCallback(update,context):
+    chatid = update.effective_chat.id
+    user = update.effective_user
+    uid = str(user.id)
+    query = update.callback_query 
+    if query.data == 'st:tank':
+        query.answer("Sucess! You are now a tank.")
+        bal[uid]['stats']['rolename'] = "🦾 The Tank"
+        bal[uid]['stats']['types'] = []
+        bal[uid]['stats']['types'].append('Metal')
+        bal[uid]['stats']['types'].append('Ground')
+        bal[uid]['stats']['atk']['current'] = 50
+        bal[uid]['stats']['atk']['max'] = 50
+        bal[uid]['stats']['defence']['current'] = 150
+        bal[uid]['stats']['defence']['max'] = 150
+        bal[uid]['stats']['hp']['current'] = 125
+        bal[uid]['stats']['hp']['max'] = 125
+        bal[uid]['stats']['speed']['current'] = 25
+        bal[uid]['stats']['speed']['max'] = 25
+    if query.data == 'st:warrior':
+        query.answer("Sucess! You are now a warrior.")
+        bal[uid]['stats']['rolename'] = "🗡 The Warrior"
+        bal[uid]['stats']['types'] = []
+        bal[uid]['stats']['types'].append('Normal')
+        bal[uid]['stats']['types'].append('Fighting')
+        bal[uid]['stats']['atk']['current'] = 90
+        bal[uid]['stats']['atk']['max'] = 90
+        bal[uid]['stats']['defence']['current'] = 90
+        bal[uid]['stats']['defence']['max'] = 90
+        bal[uid]['stats']['hp']['current'] = 95
+        bal[uid]['stats']['hp']['max'] = 95
+        bal[uid]['stats']['speed']['current'] = 85
+        bal[uid]['stats']['speed']['max'] = 85
+    if query.data == 'st:flash':
+        query.answer("Sucess! You are now a flash.")
+        bal[uid]['stats']['rolename'] = "⚡️ The Flash"
+        bal[uid]['stats']['types'].append('Thunder')
+        bal[uid]['stats']['types'].append('Psychic')
+        bal[uid]['stats']['atk']['current'] = 130
+        bal[uid]['stats']['atk']['max'] = 130
+        bal[uid]['stats']['defence']['current'] = 30
+        bal[uid]['stats']['defence']['max'] = 30
+        bal[uid]['stats']['hp']['current'] = 30
+        bal[uid]['stats']['hp']['max'] = 30
+        bal[uid]['stats']['speed']['current'] = 160
+        bal[uid]['stats']['speed']['max'] = 160
+    if query.data == 'st:thief':
+        query.answer("Sucess! You are now a thief.")
+        bal[uid]['stats']['rolename'] = "💎 The Thief"
+        bal[uid]['stats']['types'].append('Ghost')
+        bal[uid]['stats']['types'].append('Fighting')
+        bal[uid]['stats']['atk']['current'] = 140
+        bal[uid]['stats']['atk']['max'] = 140
+        bal[uid]['stats']['defence']['current'] = 70
+        bal[uid]['stats']['defence']['max'] = 70
+        bal[uid]['stats']['hp']['current'] = 50
+        bal[uid]['stats']['hp']['max'] = 50
+        bal[uid]['stats']['speed']['current'] = 120
+        bal[uid]['stats']['speed']['max'] = 120
+    config.save_config()
+
 def add_handler(dp:Dispatcher):
     dp.add_handler(CommandHandler('PDBal', balence))
     dp.add_handler(CommandHandler('PDDaily', daily))
     dp.add_handler(CommandHandler('PDInv', inv))
     dp.add_handler(CommandHandler('PDUseCodes', usecodes))
+    dp.add_handler(CommandHandler('PDStats', stats))
+    dp.add_handler(CallbackQueryHandler(buttonCallback,pattern="^st:[A-Za-z0-9_]*"))
 
 def get_command():
     return [BotCommand('pdbal','Check your bank account!'),('pddaily','Claim your daily coins!'),('pddaily','Collect your daily coins!'),('pdinv','Check your current inventory!')]
