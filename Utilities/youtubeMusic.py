@@ -29,7 +29,7 @@ def musicOnly(update,context):
             else: 
                 update.message.reply_text("Sorry this fike is too big")
         else:
-            pdate.message.reply_text("YTVId")
+            update.message.reply_text("YTVId")
     else:
         update.message.reply_text("Put a link! for example: /pdgetmusic@dankpbot https://www.youtube.com/watch?v=Pw6b0-Wi_FI")
 
