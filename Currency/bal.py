@@ -298,12 +298,16 @@ def stats(update,context):
 
      """
         update.message.reply_text(msg,reply_markup=kb)
-    else: 
+    else:
+        msg2 = "\n\n"
+        for i in bal[uid]['stats']['types']:
+            msg2 += f"{i}\n"
+
         msg = f"""{fname}'s stats:
 
 {bal[uid]['stats']['rolename']}
 
-Types: {bal[uid]['stats']['types']}
+Types: {msg2}
 
 Status:
 
@@ -336,8 +340,8 @@ def buttonCallback(update,context):
         query.answer("Sucess! You are now a tank.")
         bal[uid]['stats']['rolename'] = "🦾 The Tank"
         bal[uid]['stats']['types'] = []
-        bal[uid]['stats']['types'].append('Metal')
-        bal[uid]['stats']['types'].append('Ground')
+        bal[uid]['stats']['types'].append('⚙️ Steel')
+        bal[uid]['stats']['types'].append('🧱 Ground')
         bal[uid]['stats']['atk']['current'] = 50
         bal[uid]['stats']['atk']['max'] = 50
         bal[uid]['stats']['defence']['current'] = 150
@@ -346,12 +350,25 @@ def buttonCallback(update,context):
         bal[uid]['stats']['hp']['max'] = 125
         bal[uid]['stats']['speed']['current'] = 25
         bal[uid]['stats']['speed']['max'] = 25
+        query.edit_message( f"""{fname}'s stats:
+
+{bal[uid]['stats']['rolename']}
+
+Types: {msg2}
+
+Status:
+
+💥 Attack: {bal[uid]['stats']['atk']['current']} / {bal[uid]['stats']['atk']['max']}
+🛡 Defence: {bal[uid]['stats']['defence']['current']} / {bal[uid]['stats']['defence']['max']}
+♥️ HP: {bal[uid]['stats']['hp']['current']} / {bal[uid]['stats']['hp']['max']}
+⚡️ Speed: {bal[uid]['stats']['speed']['current']} / {bal[uid]['stats']['speed']['max']}
+    """)
     if query.data == 'st:warrior':
         query.answer("Sucess! You are now a warrior.")
         bal[uid]['stats']['rolename'] = "🗡 The Warrior"
         bal[uid]['stats']['types'] = []
-        bal[uid]['stats']['types'].append('Normal')
-        bal[uid]['stats']['types'].append('Fighting')
+        bal[uid]['stats']['types'].append('😀 Normal')
+        bal[uid]['stats']['types'].append('🥊 Fighting')
         bal[uid]['stats']['atk']['current'] = 90
         bal[uid]['stats']['atk']['max'] = 90
         bal[uid]['stats']['defence']['current'] = 90
@@ -360,11 +377,24 @@ def buttonCallback(update,context):
         bal[uid]['stats']['hp']['max'] = 95
         bal[uid]['stats']['speed']['current'] = 85
         bal[uid]['stats']['speed']['max'] = 85
+        query.edit_message( f"""{fname}'s stats:
+
+{bal[uid]['stats']['rolename']}
+
+Types: {msg2}
+
+Status:
+
+💥 Attack: {bal[uid]['stats']['atk']['current']} / {bal[uid]['stats']['atk']['max']}
+🛡 Defence: {bal[uid]['stats']['defence']['current']} / {bal[uid]['stats']['defence']['max']}
+♥️ HP: {bal[uid]['stats']['hp']['current']} / {bal[uid]['stats']['hp']['max']}
+⚡️ Speed: {bal[uid]['stats']['speed']['current']} / {bal[uid]['stats']['speed']['max']}
+    """)
     if query.data == 'st:flash':
         query.answer("Sucess! You are now a flash.")
         bal[uid]['stats']['rolename'] = "⚡️ The Flash"
-        bal[uid]['stats']['types'].append('Thunder')
-        bal[uid]['stats']['types'].append('Psychic')
+        bal[uid]['stats']['types'].append('⚡️ Thunder')
+        bal[uid]['stats']['types'].append('💥 Psychic')
         bal[uid]['stats']['atk']['current'] = 130
         bal[uid]['stats']['atk']['max'] = 130
         bal[uid]['stats']['defence']['current'] = 30
@@ -373,11 +403,24 @@ def buttonCallback(update,context):
         bal[uid]['stats']['hp']['max'] = 30
         bal[uid]['stats']['speed']['current'] = 160
         bal[uid]['stats']['speed']['max'] = 160
+        query.edit_message( f"""{fname}'s stats:
+
+{bal[uid]['stats']['rolename']}
+
+Types: {msg2}
+
+Status:
+
+💥 Attack: {bal[uid]['stats']['atk']['current']} / {bal[uid]['stats']['atk']['max']}
+🛡 Defence: {bal[uid]['stats']['defence']['current']} / {bal[uid]['stats']['defence']['max']}
+♥️ HP: {bal[uid]['stats']['hp']['current']} / {bal[uid]['stats']['hp']['max']}
+⚡️ Speed: {bal[uid]['stats']['speed']['current']} / {bal[uid]['stats']['speed']['max']}
+    """)
     if query.data == 'st:thief':
         query.answer("Sucess! You are now a thief.")
         bal[uid]['stats']['rolename'] = "💎 The Thief"
-        bal[uid]['stats']['types'].append('Ghost')
-        bal[uid]['stats']['types'].append('Fighting')
+        bal[uid]['stats']['types'].append('👻 Ghost')
+        bal[uid]['stats']['types'].append('🥊 Fighting')
         bal[uid]['stats']['atk']['current'] = 140
         bal[uid]['stats']['atk']['max'] = 140
         bal[uid]['stats']['defence']['current'] = 70
@@ -386,6 +429,18 @@ def buttonCallback(update,context):
         bal[uid]['stats']['hp']['max'] = 50
         bal[uid]['stats']['speed']['current'] = 120
         bal[uid]['stats']['speed']['max'] = 120
+        query.edit_message( f"""{fname}'s stats:
+
+{bal[uid]['stats']['rolename']}
+
+Types: {msg2}
+
+Status:
+
+💥 Attack: {bal[uid]['stats']['atk']['current']} / {bal[uid]['stats']['atk']['max']}
+🛡 Defence: {bal[uid]['stats']['defence']['current']} / {bal[uid]['stats']['defence']['max']}
+♥️ HP: {bal[uid]['stats']['hp']['current']} / {bal[uid]['stats']['hp']['max']}
+⚡️ Speed: {bal[uid]['stats']['speed']['current']} / {bal[uid]['stats']['speed']['max']}""")
     config.save_config()
 
 def add_handler(dp:Dispatcher):

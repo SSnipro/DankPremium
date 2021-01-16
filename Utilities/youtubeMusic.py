@@ -28,10 +28,9 @@ def musicOnly(update,context):
             if music_size < 1000*1000*10:
                 img = "https://i.pcmag.com/imagery/articles/04oP7J3OIykTchX4vhU57vn-28..1569485834.jpg"
                 bestaudio.download(audiofile)
-                msg = update.message.reply_photo(img,f"downloading... Your audio's size is {music_size/100}KB")
-                context.bot.send_message(chatid, text=f"🎵 Music: {title} by 🎶 {author}")
+                msg = update.message.reply_photo(img,f"downloading... Your audio's size is {music_size/100}KB\n\n🎵 Music: {title} by 🎶 {author}")
                 msg.edit_media(InputMediaAudio(open(audiofile,'rb')))
-                msg = context.bot.send_message(chatid, text=f"{str(video)}")
+                msg == context.bot.send_message(chatid,f"{str(video)}")
                 os.remove(audiofile)
             else: 
                 update.message.reply_text("Sorry this file is too big")
