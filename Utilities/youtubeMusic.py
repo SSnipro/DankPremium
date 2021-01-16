@@ -26,9 +26,12 @@ def musicOnly(update,context):
                 bestaudio.download(audiofile)
                 update.message.reply_audio(open(audiofile, 'rb'),caption=f'{title}\n{author}\n\n')
                 os.remove(audiofile)
-    
+            else: 
+                update.message.reply_text("Sorry this fike is too big")
+        else:
+            pdate.message.reply_text("YTVId")
     else:
-        update.message.reply_text("Put a link! for example: /pdgetmusic@dankpbot https://www.youtube.com/watch?v=BezpUnoZObw")
+        update.message.reply_text("Put a link! for example: /pdgetmusic@dankpbot https://www.youtube.com/watch?v=Pw6b0-Wi_FI")
 
 def add_handler(dp:Dispatcher):
     dp.add_handler(CommandHandler('pd_yt_music', youtubemusic))
