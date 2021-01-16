@@ -13,18 +13,7 @@ def youtubemusic(update,context):
 
 def musicOnly(update,context):
     if len(context.args) == 1:
-        # url = str(context.args[0])
-        # video = pafy.new(url)
-        # v = str(video).split('\n')
-        # title = v[0]
-        # author = v[1]
-        # print(v)
-        # for n in video.streams:
-        #     print(f'LOL ITS THIS -> \n{n}\n\n')
-        # audiostreams = video.audiostreams
-        # for a in audiostreams:
-        #     print(a.bitrate, a.extension, a.get_filesize())
-        # update.message.reply_text
+        url = str(context.args[0])
         if 'www.youtube.com' in url:
             video = pafy.new(url)
             print (video.length)
