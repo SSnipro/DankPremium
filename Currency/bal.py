@@ -48,38 +48,58 @@ def check(user):
                     'name':"",
                     'type':"",
                     'power':"",
-                    'acc':50
+                    'acc':0,
+                    'heal':0
                 },
                 '2':{
                     'name':"",
                     'type':"",
                     'power':"",
-                    'acc':50
+                    'acc':0,
+                    'heal':0
                 },
                 '3':{
                     'name':"",
                     'type':"",
                     'power':"",
-                    'acc':50
+                    'acc':0,
+                    'heal':0
                 },
                 '4':{
                     'name':"",
                     'type':"",
                     'power':"",
-                    'acc':50
+                    'acc':0,
+                    'heal':0
                 },
                 '5':{
                     'name':"",
                     'type':"",
                     'power':"",
-                    'acc':50
+                    'acc':0,
+                    'heal':0
                 },
                 '6':{
                     'name':"",
                     'type':"",
                     'power':"",
-                    'acc':50
+                    'acc':0,
+                    'heal':0
                 },
+                '7':{
+                    'name':"",
+                    'type':"",
+                    'power':"",
+                    'acc':0,
+                    'heal':0
+                },
+                '8':{
+                    'name':"",
+                    'type':"",
+                    'power':"",
+                    'acc':0,
+                    'heal':0
+                }
             },
             'atk': {
                 'max': 50,
@@ -294,6 +314,13 @@ Status:
     """
         update.message.reply_text(msg)
     
+def moves(update,context):
+    m = ["1","2","3","4","5","6","7","8"]
+    uid = str(update.effective_user.id)
+    for i in m:
+        update.message.reply_text(bal[uid]['stats']['moves'][i])
+    
+    
 
 def buttonCallback(update,context):
     chatid = update.effective_chat.id
@@ -362,6 +389,7 @@ def add_handler(dp:Dispatcher):
     dp.add_handler(CommandHandler('PDInv', inv))
     dp.add_handler(CommandHandler('PDUseCodes', usecodes))
     dp.add_handler(CommandHandler('PDStats', stats))
+    dp.add_handler(CommandHandler('PDMoves', moves))
     dp.add_handler(CallbackQueryHandler(buttonCallback,pattern="^st:[A-Za-z0-9_]*"))
 
 def get_command():
