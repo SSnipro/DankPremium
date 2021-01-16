@@ -315,13 +315,18 @@ Status:
         update.message.reply_text(msg)
     
 def moves(update,context):
+    msg = f"-----------------"
+    chatid = update.effective_chat.id
     m = ["1","2","3","4","5","6","7","8"]
     uid = str(update.effective_user.id)
+    moves = bal[uid]['stats']['moves']
     for i in m:
-        update.message.reply_text(bal[uid]['stats']['moves'][i])
+        b = "No Healing Power"
+        if not moves[i]['heal'] == 0:
+            b = f"Healing Power: {bal[uid]['stats']['moves'][i]['heal']}"
+        msg += f"\n\n{moves[i]['name']}\n\n{moves[i]['type']}\nPower: {moves[i]['power']} \nAccuracy: {moves[i]['acc']} \n{b}\n\n-----------------"
+    context.bot.send_message(chatid, text=msg)
     
-    
-
 def buttonCallback(update,context):
     chatid = update.effective_chat.id
     user = update.effective_user
