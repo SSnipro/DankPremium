@@ -16,6 +16,9 @@ def musicOnly(update,context):
         url = str(context.args[0])
         if 'www.youtube.com' in url:
             video = pafy.new(url)
+            v = str(video).split('\n')
+            title = v[0]
+            author = v[1]
             print (video.length)
             if video.length <= 6000:
                 bestaudio = video.getbestaudio(preftype="m4a")
