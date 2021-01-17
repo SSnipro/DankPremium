@@ -300,6 +300,7 @@ def stats(update,context):
         update.message.reply_text(msg,reply_markup=kb)
     else:
         msg2 = "\n\n"
+        # range(100) = [0]
         for i in bal[uid]['stats']['types']:
             msg2 += f"{i}\n"
 
@@ -321,14 +322,14 @@ Status:
 def moves(update,context):
     msg = f"-----------------"
     chatid = update.effective_chat.id
-    m = ["1","2","3","4","5","6","7","8"]
+    m = list(range(1,9))
     uid = str(update.effective_user.id)
     moves = bal[uid]['stats']['moves']
     for i in m:
         b = "No Healing Power"
-        if not moves[i]['heal'] == 0:
-            b = f"Healing Power: {bal[uid]['stats']['moves'][i]['heal']}"
-        msg += f"\n\n{moves[i]['name']}\n\n{moves[i]['type']}\nPower: {moves[i]['power']} \nAccuracy: {moves[i]['acc']} \n{b}\n\n-----------------"
+        if not moves[str(i)]['heal'] == 0:
+            b = f"Healing Power: {bal[uid]['stats']['moves'][str(i)]['heal']}"
+        msg += f"\n\n{moves[str(i)]['name']}\n\n{moves[str(i)]['type']}\nPower: {moves[str(i)]['power']} \nAccuracy: {moves[str(i)]['acc']} \n{b}\n\n-----------------"
     context.bot.send_message(chatid, text=msg)
     
 def buttonCallback(update,context):
@@ -342,6 +343,14 @@ def buttonCallback(update,context):
         bal[uid]['stats']['types'] = []
         bal[uid]['stats']['types'].append('⚙️ Steel')
         bal[uid]['stats']['types'].append('🧱 Ground')
+        bal[uid]['stats']['moves']['1']['name'] = '⚙️ Canon'
+        bal[uid]['stats']['moves']['1']['type'] = '⚙️ Steel'
+        bal[uid]['stats']['moves']['1']['power'] = 120
+        bal[uid]['stats']['moves']['1']['acc'] = 100
+        bal[uid]['stats']['moves']['2']['name'] = '🧱 Earthquake'
+        bal[uid]['stats']['moves']['2']['type'] = '🧱 Ground'
+        bal[uid]['stats']['moves']['1']['power'] = 100
+        bal[uid]['stats']['moves']['1']['acc'] = 100
         bal[uid]['stats']['atk']['current'] = 50
         bal[uid]['stats']['atk']['max'] = 50
         bal[uid]['stats']['defence']['current'] = 150
@@ -367,8 +376,16 @@ Status:
         query.answer("Sucess! You are now a warrior.")
         bal[uid]['stats']['rolename'] = "🗡 The Warrior"
         bal[uid]['stats']['types'] = []
-        bal[uid]['stats']['types'].append('😀 Normal')
+        bal[uid]['stats']['types'].append('😀 Normal')          
         bal[uid]['stats']['types'].append('🥊 Fighting')
+        bal[uid]['stats']['moves']['1']['name'] = '😀 Last-Resort'
+        bal[uid]['stats']['moves']['1']['type'] = '😀 Normal'
+        bal[uid]['stats']['moves']['1']['power'] = 140
+        bal[uid]['stats']['moves']['1']['acc'] = 100
+        bal[uid]['stats']['moves']['2']['name'] = '🥊 Power-up-Punch'
+        bal[uid]['stats']['moves']['2']['type'] = '🥊 Fighting'
+        bal[uid]['stats']['moves']['1']['power'] = 200
+        bal[uid]['stats']['moves']['1']['acc'] = 50
         bal[uid]['stats']['atk']['current'] = 90
         bal[uid]['stats']['atk']['max'] = 90
         bal[uid]['stats']['defence']['current'] = 90
@@ -395,6 +412,14 @@ Status:
         bal[uid]['stats']['rolename'] = "⚡️ The Flash"
         bal[uid]['stats']['types'].append('⚡️ Thunder')
         bal[uid]['stats']['types'].append('💥 Psychic')
+        bal[uid]['stats']['moves']['1']['name'] = '⚡️ Extreme-Speed'
+        bal[uid]['stats']['moves']['1']['type'] = '⚡️ Thunder'
+        bal[uid]['stats']['moves']['1']['power'] = 80
+        bal[uid]['stats']['moves']['1']['acc'] = 100
+        bal[uid]['stats']['moves']['2']['name'] = '💥 Psychic'
+        bal[uid]['stats']['moves']['2']['type'] = '💥 Psychic'
+        bal[uid]['stats']['moves']['1']['power'] = 80
+        bal[uid]['stats']['moves']['1']['acc'] = 100
         bal[uid]['stats']['atk']['current'] = 130
         bal[uid]['stats']['atk']['max'] = 130
         bal[uid]['stats']['defence']['current'] = 30
@@ -419,8 +444,16 @@ Status:
     if query.data == 'st:thief':
         query.answer("Sucess! You are now a thief.")
         bal[uid]['stats']['rolename'] = "💎 The Thief"
-        bal[uid]['stats']['types'].append('👻 Ghost')
+        bal[uid]['stats']['types'].append('🌑 Dark')
         bal[uid]['stats']['types'].append('🥊 Fighting')
+        bal[uid]['stats']['moves']['1']['name'] = '🌑 Thief'
+        bal[uid]['stats']['moves']['1']['type'] = '🌑 Dark'
+        bal[uid]['stats']['moves']['1']['power'] = 90
+        bal[uid]['stats']['moves']['1']['acc'] = 100
+        bal[uid]['stats']['moves']['2']['name'] = '🥊 Jump-Kick'
+        bal[uid]['stats']['moves']['2']['type'] = '🥊 Fighting'
+        bal[uid]['stats']['moves']['1']['power'] = 150
+        bal[uid]['stats']['moves']['1']['acc'] = 90
         bal[uid]['stats']['atk']['current'] = 140
         bal[uid]['stats']['atk']['max'] = 140
         bal[uid]['stats']['defence']['current'] = 70
