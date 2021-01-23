@@ -3,21 +3,21 @@ from telegram.ext import Dispatcher,CommandHandler,CallbackQueryHandler
 from datetime import date, timedelta, datetime
 from telegram import BotCommand
 
+now = datetime.now()
+n = datetime.now() + timedelta(days=1)
+current_time = now.strftime("%Y-%m-%d %H:%M:%S")
+tmr = n.strftime("%Y-%m-%d")
+
 def cal(update,context):
+    global now, n, current_time, tmr
     user = update.effective_user
     url = "webcal://p21-caldav.icloud.com/published/2/MTczNjk0NjYxNTE3MzY5NCI4VvgO8d5bABgiqGFi4zClDgddjpLB5E6CykOqA35uDCfggM9Tbo2CIE2TV6rNNiQaVK2OuNAwgWSOr2MBS7Q"
     es = events(url, fix_apple=True)
     # update.message.reply_text("Check")
     msg = "明天的事件："
-    msg2 = ""
-    msg3 = ""
+    # msg2 = ""
+    # msg3 = ""
     print(es)
-    now = datetime.now()
-    n = datetime.now() + timedelta(days=1)
-    current_time = now.strftime("%Y-%m-%d %H:%M:%S")
-    tmr = n.strftime("%Y-%m-%d")
-    if current_time.split(' ')[1].split(':')[1] == '9':
-        
     # c = current_time.split(' ')[0].split('/')
     # start = date(int(c[0]),int(c[1]),int(c[2]))
     # end = date(int(c[0]),int(c[1]),int(c[2])+1)
@@ -35,6 +35,9 @@ def cal(update,context):
     
     update.message.reply_text(msg)
     # update.message.reply_text(str(current_time))
+
+print(current_time.split(' ')[1].split(':'))
+
 
 def add_handler(dp:Dispatcher):
     arctic_handler = CommandHandler('PDCal', cal)
