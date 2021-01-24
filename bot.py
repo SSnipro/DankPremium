@@ -154,7 +154,7 @@ updater.start_polling()
 print('Started')
 mysystemd.ready()
 
-noahscalendar.run_repeating(updater.job_queue)
+DankCalendar.run_repeating(updater.job_queue)
 
 updater.idle()
 print('Stopping...')

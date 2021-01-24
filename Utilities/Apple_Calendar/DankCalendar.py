@@ -8,8 +8,8 @@ from Utilities.Apple_Calendar import setCalendar
 def timer_Callback(context: CallbackContext):
     chatid = context.job.context
     tmr = date.today() + timedelta(days=1)
-    print(calendarSettings.cs)
-    url = calendarSettings.cs[str(chatid)]['url']
+    print(setCalendar.cs)
+    url = setCalendar.cs[str(chatid)]['url']
     es = events(url, fix_apple=True,start=tmr,end=tmr)
     msg = "~~~~~~~~~~~\n\n"
     for e in es:
@@ -21,11 +21,11 @@ def cal(update,context):
     context.job_queue.run_once(timer_Callback,5,context=chatid)
 
 def run_repeating(job_queue):
-    for i in range(0,len(list(calendarSettings.cs))):
-        chatid = list(calendarSettings.cs)[i]
+    for i in range(0,len(list(setCalendar.cs))):
+        chatid = list(setCalendar.cs)[i]
         print(chatid)
         j = job_queue.run_daily(timer_Callback,
-                time(hour=calendarSettings.cs[chatid]['hours'],minute=calendarSettings.cs[chatid]['minutes'],tzinfo=pytz.timezone(calendarSettings.cs[chatid]['tz'])),
+                time(hour=setCalendar.cs[chatid]['hours'],minute=setCalendar.cs[chatid]['minutes'],tzinfo=pytz.timezone(setCalendar.cs[chatid]['tz'])),
                 context=chatid)
     print('Running Fine!')
 
