@@ -41,7 +41,7 @@ def calhelp(update,context):
             cs[chatid]['minutes'] = int(time.split(':')[1])
         config.save_config()
     else:
-        update.message.reply_text('Structure: \n\n/pdsetcal@dankpbot [Your Apple Calendar URL Here] [The Time You Want The Notification Sent, For Example, 17:00] [Your Time Zone]')
+        update.message.reply_text('䷦ Structure: \n\n/pdsetcal@dankpbot [Your Apple Calendar URL Here] [The Time You Want The Notification Sent, For Example, 17:00] [Your Time Zone]')
 
 def view_cal(update,context):
     chatid = str(update.effective_chat.id)
