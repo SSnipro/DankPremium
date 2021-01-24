@@ -6,9 +6,10 @@ import pytz
 from Utilities.Apple_Calendar import calendarSettings
 
 def timer_Callback(context: CallbackContext):
-    uid = context.job.context
+    chatid = context.job.context
     tmr = date.today() + timedelta(days=1)
-    url = calendarSettings.cs[uid]['url']
+    print(calendarSettings.cs)
+    url = calendarSettings.cs[str(chatid)]['url']
     es = events(url, fix_apple=True,start=tmr,end=tmr)
     msg = "~~~~~~~~~~~\n\n"
     for e in es:
@@ -20,10 +21,12 @@ def cal(update,context):
     context.job_queue.run_once(timer_Callback,5,context=chatid)
 
 def run_repeating(job_queue):
-    uid = 
-    j = job_queue.run_daily(timer_Callback,
-            time(hour=calendarSettings.cs[chatid]['hours'],minute=calendarSettings.cs[chatid]['minutes'],tzinfo=pytz.timezone('US/Eastern')),
-            context=calendarSettings.cs.chatid)
+    for i in range(0,len(list(calendarSettings.cs))):
+        chatid = list(calendarSettings.cs)[i]
+        print(chatid)
+        j = job_queue.run_daily(timer_Callback,
+                time(hour=calendarSettings.cs[chatid]['hours'],minute=calendarSettings.cs[chatid]['minutes'],tzinfo=pytz.timezone(calendarSettings.cs[chatid]['tz'])),
+                context=chatid)
     print('Running Fine!')
 
 def add_handler(dp:Dispatcher):
