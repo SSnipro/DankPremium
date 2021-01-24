@@ -46,12 +46,14 @@ def calhelp(update,context):
 def view_cal(update,context):
     chatid = str(update.effective_chat.id)
     b = ''
+    msg = ''
     for i in list(cs):
         if cs[i]['minutes'] < 10:
             b = f"0{cs[i]['minutes']}"
         else:
             b = cs[i]['minutes']
-        update.message.reply_text(f"✨ {cs[i]['title']}\n📆 Calendar URL: {cs[i]['url']}\n🔔 Notification Time: {cs[i]['hours']}:{b}\n\n")
+        msg += f"✨ {cs[i]['title']}\n📆 Calendar URL: {cs[i]['url']}\n🔔 Notification Time: {cs[i]['hours']}:{b}\n\n"
+    update.message.reply_text(msg)
 
 def add_handler(dp:Dispatcher):
     dp.add_handler(CommandHandler('PDSetCal', calhelp))
