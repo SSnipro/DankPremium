@@ -16,7 +16,7 @@ from Currency.LIST.Adventure.Space.Yes import accept, fly
 from Currency.Games import bj
 from Fun import punish,gif
 from Utilities import mysystemd, youtubeMusic, team
-from Utilities.Apple_Calendar import noahscalendar, calendarSettings, cal
+from Utilities.Apple_Calendar import DankCalendar, setCalendar, helpCalendar
 from Utilities.get_file_info import animationInfo, fileInfo
 import os
 
@@ -143,9 +143,9 @@ fly.add_handler(dispatcher)
 shop.add_handler(dispatcher)
 youtubeMusic.add_handler(dispatcher)
 team.add_handler(dispatcher)
-noahscalendar.add_handler(dispatcher)
-calendarSettings.add_handler(dispatcher)
-cal.add_handler(dispatcher)
+DankCalendar.add_handler(dispatcher)
+setCalendar.add_handler(dispatcher)
+helpCalendar.add_handler(dispatcher)
 commands = work.get_command() + bal.get_command() + gif.get_command() + bj.get_command() + get_command() + hunt.get_command() + fish.get_command() + lst.get_command() + shop.get_command()
 bot = updater.bot
 bot.set_my_commands(commands)

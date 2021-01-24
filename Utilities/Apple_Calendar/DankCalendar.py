@@ -3,7 +3,7 @@ from telegram.ext import Dispatcher,CommandHandler,CallbackQueryHandler, Callbac
 from datetime import date, timedelta, datetime, time
 from telegram import BotCommand
 import pytz
-from Utilities.Apple_Calendar import calendarSettings
+from Utilities.Apple_Calendar import setCalendar
 
 def timer_Callback(context: CallbackContext):
     chatid = context.job.context
