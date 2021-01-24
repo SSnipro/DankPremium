@@ -25,7 +25,7 @@ def calhelp(update,context):
         timezone = context.args[2]
         if timezone in pytz.all_timezones:
             cs[chatid]['tz'] = timezone
-            update.message.reply_text('Success!')
+            update.message.reply_text(f"Success! You will receive a notification from Dank Premium in THIS CHAT everyday at {time}.")
         else:
             msg = ''
             update.message.reply_text(f'Invaid timezone.\n\nHere is a link of a list of all the timezones:\n\n✨https://gist.github.com/heyalexej/8bf688fd67d7199be4a1682b3eec7568#file-pytz-time-zones-py')

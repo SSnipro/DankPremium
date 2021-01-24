@@ -23,7 +23,6 @@ def cal(update,context):
 def run_repeating(job_queue):
     for i in range(0,len(list(setCalendar.cs))):
         chatid = list(setCalendar.cs)[i]
-        print(chatid)
         j = job_queue.run_daily(timer_Callback,
                 time(hour=setCalendar.cs[chatid]['hours'],minute=setCalendar.cs[chatid]['minutes'],tzinfo=pytz.timezone(setCalendar.cs[chatid]['tz'])),
                 context=chatid)
