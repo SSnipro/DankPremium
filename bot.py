@@ -1,7 +1,7 @@
 import random
 from telegram.ext import Dispatcher,CommandHandler
 from telegram.ext import Updater
-from telegram.ext import MessageHandler, Filters
+from telegram.ext import MessageHandler, Filters, Updater
 from telegram import BotCommand
 from Currency import bal,work,shop
 from Currency.UNRELEASED import twentyFour,leaderboards,search
@@ -15,7 +15,8 @@ from Currency.LIST.Adventure.Space import space, decline
 from Currency.LIST.Adventure.Space.Yes import accept, fly
 from Currency.Games import bj
 from Fun import punish,gif
-from Utilities import mysystemd, youtubeMusic, team, noahscalendar
+from Utilities import mysystemd, youtubeMusic, team
+from Utilities.Apple_Calendar import noahscalendar, calendarSettings
 from Utilities.get_file_info import animationInfo, fileInfo
 import os
 
@@ -143,7 +144,7 @@ shop.add_handler(dispatcher)
 youtubeMusic.add_handler(dispatcher)
 team.add_handler(dispatcher)
 noahscalendar.add_handler(dispatcher)
-
+calendarSettings.add_handler(dispatcher)
 commands = work.get_command() + bal.get_command() + gif.get_command() + bj.get_command() + get_command() + hunt.get_command() + fish.get_command() + lst.get_command() + shop.get_command()
 bot = updater.bot
 bot.set_my_commands(commands)
@@ -151,6 +152,8 @@ bot.set_my_commands(commands)
 updater.start_polling()
 print('Started')
 mysystemd.ready()
+
+noahscalendar.run_repeating(updater.job_queue)
 
 updater.idle()
 print('Stopping...')

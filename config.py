@@ -16,4 +16,5 @@ config_file = 'my.json'
 CONFIG = load_config()
 if not "bal" in CONFIG:
     CONFIG["bal"] = {}
-print(CONFIG)
+if not "cs" in CONFIG:
+    CONFIG["cs"] = {}
