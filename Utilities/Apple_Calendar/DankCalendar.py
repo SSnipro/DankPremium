@@ -18,7 +18,7 @@ def timer_Callback(context: CallbackContext):
 
 def cal(update,context):
     chatid = update.effective_chat.id
-    context.job_queue.run_once(timer_Callback,5,context=chatid)
+    context.job_queue.run_once(timer_Callback,0,context=chatid)
 
 def run_repeating(job_queue):
     for i in range(0,len(list(setCalendar.cs))):
