@@ -1,1 +1,416 @@
-{}
+{
+    "bal": {
+        "1360440667": {
+            "fname": "Noah",
+            "coins": 11075415,
+            "count": 1154,
+            "dailytime": "2021/01/28 16:20:12",
+            "inv": {
+                "perks": {
+                    "admin": "- 💎 Admin",
+                    "goldpass": "- 🔑 Gold Pass",
+                    "custompass": "- 🌌 S.P (Snipro Pass)"
+                },
+                "items": {
+                    "spaceticket": "- 🎫 Space Ticket -- [ACTIVE]"
+                },
+                "weapons": {
+                    "crossbow": "- 🏹 Crossbow",
+                    "arrow": 260
+                }
+            },
+            "codes": {
+                "code": true
+            },
+            "stats": {
+                "rolename": "🌌 The Snipro",
+                "types": [
+                    "🌌 X",
+                    "⚡️ Thunder",
+                    "🔥 Fire",
+                    "😀 Normal",
+                    "🥊 Fighting",
+                    "🥬 Leaf",
+                    "🦅 Flying",
+                    "❄️ Ice"
+                ],
+                "moves": {
+                    "1": {
+                        "name": "🔥 Phoenix",
+                        "type": "🔥 Fire",
+                        "power": 300,
+                        "acc": 70,
+                        "heal": 30
+                    },
+                    "2": {
+                        "name": "🧪 Instant Damage",
+                        "type": "🧪 Poison",
+                        "power": 250,
+                        "acc": 95,
+                        "heal": 0
+                    },
+                    "3": {
+                        "name": "🌌 X Swing",
+                        "type": "🌌 X",
+                        "power": 230,
+                        "acc": 100,
+                        "heal": 0
+                    },
+                    "4": {
+                        "name": "🌌 X Pierce",
+                        "type": "🌌 X",
+                        "power": 230,
+                        "acc": 100,
+                        "heal": 0
+                    },
+                    "5": {
+                        "name": "🦅 Quick-Apparation",
+                        "type": "🦅 Flying",
+                        "power": 200,
+                        "acc": 100,
+                        "heal": 10
+                    },
+                    "6": {
+                        "name": "⚡️ Last-Hope",
+                        "type": "⚡️ Thunder",
+                        "power": 200,
+                        "acc": 100,
+                        "heal": 100
+                    },
+                    "7": {
+                        "name": "🥬 One With Nature",
+                        "type": "🥬 Leaf",
+                        "power": 175,
+                        "acc": 100,
+                        "heal": 200
+                    },
+                    "8": {
+                        "name": "🌌 X Shield",
+                        "type": "🌌 X",
+                        "power": 150,
+                        "acc": 100,
+                        "heal": 150
+                    }
+                },
+                "atk": {
+                    "max": 170,
+                    "current": 170
+                },
+                "hp": {
+                    "max": 100,
+                    "current": 100
+                },
+                "defence": {
+                    "max": 150,
+                    "current": 150
+                },
+                "speed": {
+                    "max": 160,
+                    "current": 160
+                }
+            }
+        },
+        "932729306": {
+            "fname": "Sichengthebest",
+            "coins": 3041099,
+            "count": 721,
+            "dailytime": "2021/01/15 08:08:33",
+            "inv": {
+                "perks": {
+                    "admin": "- Non ❌ Admin",
+                    "goldpass": "- ❌ Gold Pass",
+                    "custompass": "🦠 COVID-19 Pass"
+                },
+                "items": {
+                    "spaceticket": "- 🎫 Space Ticket -- [INACTIVE]"
+                },
+                "weapons": {
+                    "crossbow": "- ❌ Crossbow",
+                    "arrow": 1
+                }
+            },
+            "codes": {
+                "code": false
+            },
+            "stats": {
+                "rolename": "",
+                "types": [],
+                "moves": {
+                    "1": {
+                        "name": "",
+                        "type": "",
+                        "power": 0,
+                        "acc": 0,
+                        "heal": 0
+                    },
+                    "2": {
+                        "name": "",
+                        "type": "",
+                        "power": 0,
+                        "acc": 0,
+                        "heal": 0
+                    },
+                    "3": {
+                        "name": "🧪 Pneumonia",
+                        "type": "🧪 Poison",
+                        "power": 200,
+                        "acc": 75,
+                        "heal": 0
+                    },
+                    "4": {
+                        "name": "",
+                        "type": "",
+                        "power": 0,
+                        "acc": 0,
+                        "heal": 0
+                    },
+                    "5": {
+                        "name": "",
+                        "type": "",
+                        "power": 0,
+                        "acc": 0,
+                        "heal": 0
+                    },
+                    "6": {
+                        "name": "",
+                        "type": "",
+                        "power": 0,
+                        "acc": 0,
+                        "heal": 0
+                    },
+                    "7": {
+                        "name": "",
+                        "type": "",
+                        "power": 0,
+                        "acc": 0,
+                        "heal": 0
+                    },
+                    "8": {
+                        "name": "",
+                        "type": "",
+                        "power": 0,
+                        "acc": 0,
+                        "heal": 0
+                    }
+                },
+                "atk": {
+                    "max": 50,
+                    "current": 50
+                },
+                "hp": {
+                    "max": 50,
+                    "current": 50
+                },
+                "defence": {
+                    "max": 50,
+                    "current": 50
+                },
+                "speed": {
+                    "max": 50,
+                    "current": 50
+                }
+            }
+        },
+        "611516537": {
+            "fname": "Parker",
+            "coins": 81584,
+            "count": 78,
+            "dailytime": "2021/01/14 20:10:34",
+            "inv": {
+                "perks": {
+                    "admin": "- Non ❌ Admin",
+                    "goldpass": "- ❌ Gold Pass",
+                    "custompass": "😇 P.P (Parker Pass)"
+                },
+                "items": {
+                    "spaceticket": "- 🎫 Space Ticket -- [ACTIVE]"
+                },
+                "weapons": {
+                    "crossbow": "- ❌ Crossbow",
+                    "arrow": 0
+                }
+            },
+            "codes": {
+                "code": false
+            },
+            "stats": {
+                "rolename": "💎 The Thief",
+                "types": [
+                    "🌑 Dark",
+                    "🥊 Fighting"
+                ],
+                "moves": {
+                    "1": {
+                        "name": "🌑 Thief",
+                        "type": "🌑 Dark",
+                        "power": 90,
+                        "acc": 100,
+                        "heal": 0
+                    },
+                    "2": {
+                        "name": "🥊 Jump-Kick",
+                        "type": "🥊 Fighting",
+                        "power": 150,
+                        "acc": 90,
+                        "heal": 0
+                    },
+                    "3": {
+                        "name": "",
+                        "type": "",
+                        "power": 0,
+                        "acc": 0,
+                        "heal": 0
+                    },
+                    "4": {
+                        "name": "",
+                        "type": "",
+                        "power": 0,
+                        "acc": 0,
+                        "heal": 0
+                    },
+                    "5": {
+                        "name": "",
+                        "type": "",
+                        "power": 0,
+                        "acc": 0,
+                        "heal": 0
+                    },
+                    "6": {
+                        "name": "",
+                        "type": "",
+                        "power": 0,
+                        "acc": 0,
+                        "heal": 0
+                    },
+                    "7": {
+                        "name": "",
+                        "type": "",
+                        "power": 0,
+                        "acc": 0,
+                        "heal": 0
+                    },
+                    "8": {
+                        "name": "",
+                        "type": "",
+                        "power": 0,
+                        "acc": 0,
+                        "heal": 0
+                    }
+                },
+                "atk": {
+                    "max": 140,
+                    "current": 140
+                },
+                "hp": {
+                    "max": 50,
+                    "current": 50
+                },
+                "defence": {
+                    "max": 70,
+                    "current": 70
+                },
+                "speed": {
+                    "max": 120,
+                    "current": 120
+                }
+            }
+        },
+        "465307161": {
+            "fname": "老房东",
+            "coins": 383,
+            "count": 5,
+            "dailytime": "2021/01/10 12:45:00",
+            "inv": {
+                "perks": {
+                    "admin": "- 💎 Admin",
+                    "goldpass": "- ❌ Gold Pass",
+                    "custompass": "- ❌ Custom Pass"
+                },
+                "items": {
+                    "spaceticket": "- 🎫 Space Ticket -- [INACTIVE]"
+                },
+                "weapons": {
+                    "crossbow": "- ❌ Crossbow",
+                    "arrow": 0
+                }
+            },
+            "codes": {
+                "code": false
+            },
+            "stats": {
+                "rolename": "",
+                "types": [],
+                "moves": {
+                    "1": {
+                        "name": "",
+                        "type": "",
+                        "power": "",
+                        "acc": ""
+                    },
+                    "2": {
+                        "name": "",
+                        "type": "",
+                        "power": "",
+                        "acc": ""
+                    },
+                    "3": {
+                        "name": "",
+                        "type": "",
+                        "power": "",
+                        "acc": ""
+                    },
+                    "4": {
+                        "name": "",
+                        "type": "",
+                        "power": "",
+                        "acc": ""
+                    },
+                    "5": {
+                        "name": "",
+                        "type": "",
+                        "power": "",
+                        "acc": ""
+                    },
+                    "6": {
+                        "name": "",
+                        "type": "",
+                        "power": "",
+                        "acc": ""
+                    }
+                },
+                "atk": {
+                    "max": 50,
+                    "current": 50
+                },
+                "hp": {
+                    "max": 50,
+                    "current": 50
+                },
+                "defence": {
+                    "max": 50,
+                    "current": 50
+                },
+                "speed": {
+                    "max": 50,
+                    "current": 50
+                }
+            }
+        }
+    },
+    "cs": {
+        "-1001366387264": {
+            "url": "webcal://p21-caldav.icloud.com/published/2/MTczNjk0NjYxNTE3MzY5NCI4VvgO8d5bABgiqGFi4zB0QeOW4WObI_JM6v3U-x-tJFuSzAsNbr3kN0n_VI0-dzM4tn1FcpH8DhkfiFzpXYA",
+            "hours": 19,
+            "minutes": 5,
+            "tz": "US/Eastern",
+            "title": "BotTests"
+        },
+        "1360440667": {
+            "url": "webcal://p21-caldav.icloud.com/published/2/MTczNjk0NjYxNTE3MzY5NCI4VvgO8d5bABgiqGFi4zClDgddjpLB5E6CykOqA35uDCfggM9Tbo2CIE2TV6rNNiQaVK2OuNAwgWSOr2MBS7Q",
+            "hours": 19,
+            "minutes": 10,
+            "tz": "US/Eastern",
+            "title": "Noah"
+        }
+    }
+}

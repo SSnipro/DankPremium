@@ -24,17 +24,15 @@ What? Still want to check the process? Then run the command '/PDLeaderboards Cur
 def lb(update,context):
     # user = update.effective_user
     # uid = str(user.id)
-    CONFIG = load_config()["bal"]
+    msg = ""
+    msg2 = "#1: "
     if len(context.args) == 0 :
         update.message.reply_text(help()) 
     elif len(context.args) == 1:
-        con = str(CONFIG).split('},')
-        print(con)
-        c = list(con)
-        for i in range(1,len(c)+1):
-            print(i)
-            context.bot.send_message(update.effective_chat.id,text=f'#{i}: 🏦 ✨{c[i-1]}')
-        
+        for i in list(bal.bal): 
+            msg += (f"🏦 {bal.bal[i]['fname']} ✨{bal.bal[i]['coins']} (Count: {bal.bal[i]['count']})\n")
+        update.message.reply_text(msg)
+    
 def add_handler(dp:Dispatcher):
     hunt_handler = CommandHandler('PDLeaderboards', lb)
     dp.add_handler(hunt_handler)

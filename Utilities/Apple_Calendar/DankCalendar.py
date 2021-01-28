@@ -14,7 +14,7 @@ def timer_Callback(context: CallbackContext):
     msg = "~~~~~~~~~~~\n\n"
     for e in es:
         msg += f"✨{e.summary}:\n{e.description}✨\n\n🌕 Start: {e.start} \n🌑 End: {e.end}\n\n~~~~~~~~~~~\n\n"
-    if msg == "~~~~~~~~~~~\n\n":
+    if es == []:
         msg = "You have no events tommorow."
     context.bot.send_message(chat_id=context.job.context, text=msg)
 
