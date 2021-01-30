@@ -21,17 +21,25 @@ def musicOnly(update,context):
             v = str(video).split('\n')
             title = v[0].split(':')[1]
             author = v[1].split(':')[1]
-            print (video.length)
             bestaudio = video.getbestaudio(preftype="m4a")
             music_size = bestaudio.get_filesize()
             audiofile = f'/tmp/{bestaudio.title}.{bestaudio.extension}'
+            a = audiofile.split('"')
+            a2 = ''
+            audio = ''
+            for i in a:
+                a2 += f'{i}'
+            a3 = a2.split(" ")
+            for j in a3:
+                audio += f'{j}'
+            print(audio)
             if music_size < 1000*1000*10:
                 img = "https://i.pcmag.com/imagery/articles/04oP7J3OIykTchX4vhU57vn-28..1569485834.jpg"
-                bestaudio.download(audiofile)
+                bestaudio.download(audio)
                 msg = update.message.reply_photo(img,f"downloading... Your audio's size is {music_size/100}KB\n\n🎵 Music: {title} by 🎶 {author}")
-                msg.edit_media(InputMediaAudio(open(audiofile,'rb')))
+                msg.edit_media(InputMediaAudio(open(audio,'rb')))
                 msg == context.bot.send_message(chatid,f"{str(video)}")
-                os.remove(audiofile)
+                os.remove(audio)
             else: 
                 update.message.reply_text("Sorry this file is too big")
         else:
