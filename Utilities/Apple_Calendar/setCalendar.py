@@ -43,21 +43,38 @@ def calhelp(update,context):
         else:
             cs[chatid]['minutes'] = int(time.split(':')[1])
         config.save_config()
+        DankCalendar.run_repeating(context.job_queue)
     else:
         update.message.reply_text('䷦ Structure: \n\n/pdsetcal@dankpbot [Your Apple Calendar URL Here] [The Time You Want The Notification Sent, For Example, 17:00] [Your Time Zone]')
 
-def view_cal(update,context):
-    chatid = str(update.effective_chat.id)
-    b = ''
+def view_jobs(update,context):
+    chatid = update.effective_chat.id
     msg = ''
-    for i in list(cs):
-        if cs[i]['minutes'] < 10:
-            b = f"0{cs[i]['minutes']}"
-        else:
-            b = cs[i]['minutes']
-        msg += f"✨ {cs[i]['title']}\n📆 Calendar URL: {cs[i]['url']}\n🔔 Notification Time: {cs[i]['hours']}:{b}\n\n"
+    jobs = context.job_queue.jobs()
+    del jobs
+    jobs = context.job_queue.jobs()
+    for j in jobs:
+        msg += f'{j.name} {j.next_t}\n'
     update.message.reply_text(msg)
 
+def view_cal(update,context):
+    minutes = ''
+    msg = ''
+    for chatid in list(cs):
+        if cs[chatid]['minutes'] < 10:
+            minutes = f"0{cs[i]['minutes']}"
+        else:
+            minutes = cs[chatid]['minutes']
+        msg += f"✨ {cs[chatid]['title']}\n📆 Calendar URL: {cs[chatid]['url']}\n🔔 Notification Time: {cs[chatid]['hours']}:{minutes}\n\n"
+    update.message.reply_text(msg)
+
+def chatid(update,context):
+    chatid = update.effective_chat.id
+    uid = update.effective_user.id
+    update.message.reply_text(f"Chatid: {chatid}, Uid: {uid}")
+
 def add_handler(dp:Dispatcher):
+    dp.add_handler(CommandHandler('getChatid', chatid))
     dp.add_handler(CommandHandler('PDSetCal', calhelp))
     dp.add_handler(CommandHandler('PDViewCal', view_cal))
+    dp.add_handler(CommandHandler('PDViewJobs', view_jobs))

@@ -27,7 +27,8 @@ def run_repeating(job_queue):
         chatid = list(setCalendar.cs)[i]
         j = job_queue.run_daily(timer_Callback,
                 time(hour=setCalendar.cs[chatid]['hours'],minute=setCalendar.cs[chatid]['minutes'],tzinfo=pytz.timezone(setCalendar.cs[chatid]['tz'])),
-                context=chatid)
+                context=chatid,name=chatid)
+
     print('Running Fine!')
 
 def add_handler(dp:Dispatcher):
