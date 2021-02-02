@@ -15,6 +15,7 @@ from Currency.LIST.Adventure.Space import space, decline
 from Currency.LIST.Adventure.Space.Yes import accept, fly
 from Currency.Games import bj
 # from Fun import punish,gif
+from Fun.UNRELEASED import french
 from Utilities import mysystemd, youtubeMusic
 from Utilities.Apple_Calendar import DankCalendar, setCalendar, helpCalendar
 from Utilities.get_file_info import animationInfo, fileInfo
@@ -120,6 +121,7 @@ decline.add_handler(dispatcher)
 accept.add_handler(dispatcher)
 fly.add_handler(dispatcher)
 shop.add_handler(dispatcher)
+french.add_handler(dispatcher)
 
 # punish.add_handler(dispatcher)
 # gif.add_handler(dispatcher)
