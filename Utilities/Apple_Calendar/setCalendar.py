@@ -51,8 +51,6 @@ def view_jobs(update,context):
     chatid = update.effective_chat.id
     msg = ''
     jobs = context.job_queue.jobs()
-    del jobs
-    jobs = context.job_queue.jobs()
     for j in jobs:
         msg += f'{j.name} {j.next_t}\n'
     update.message.reply_text(msg)
@@ -62,7 +60,7 @@ def view_cal(update,context):
     msg = ''
     for chatid in list(cs):
         if cs[chatid]['minutes'] < 10:
-            minutes = f"0{cs[i]['minutes']}"
+            minutes = f"0{cs[chatid]['minutes']}"
         else:
             minutes = cs[chatid]['minutes']
         msg += f"✨ {cs[chatid]['title']}\n📆 Calendar URL: {cs[chatid]['url']}\n🔔 Notification Time: {cs[chatid]['hours']}:{minutes}\n\n"

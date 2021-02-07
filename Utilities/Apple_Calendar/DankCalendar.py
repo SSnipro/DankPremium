@@ -23,12 +23,15 @@ def cal(update,context):
     context.job_queue.run_once(timer_Callback,0,context=chatid)
 
 def run_repeating(job_queue):
+    jobs = job_queue.get_jobs_by_name(chatid)
+    if len(jobs) > 0:
+        for job in jobs:
+            job.schedule_removal()
     for i in range(0,len(list(setCalendar.cs))):
         chatid = list(setCalendar.cs)[i]
-        j = job_queue.run_daily(timer_Callback,
+        jobs = job_queue.run_daily(timer_Callback,
                 time(hour=setCalendar.cs[chatid]['hours'],minute=setCalendar.cs[chatid]['minutes'],tzinfo=pytz.timezone(setCalendar.cs[chatid]['tz'])),
                 context=chatid,name=chatid)
-
     print('Running Fine!')
 
 def add_handler(dp:Dispatcher):

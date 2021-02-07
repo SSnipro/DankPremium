@@ -302,7 +302,7 @@ def stats(update,context):
         msg2 = "\n\n"
         # range(100) = [0]
         for i in bal[uid]['stats']['types']:
-            msg2 += f"{i}\n"
+            msg2 += f"{i.split(' ')[0]}"
 
         msg = f"""{fname}'s stats:
 
