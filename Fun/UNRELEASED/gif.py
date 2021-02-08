@@ -71,6 +71,7 @@ def vote_callback(update,context):
 
 def add_handler(dp:Dispatcher):
     gif_handler = CommandHandler('pdgif', gifcmd)
+    dp.add_handler(CallbackQueryHandler(vote_callback,pattern="^vote:[A-Za-z0-9_]*"))
     dp.add_handler(gif_handler)
 
 def get_command():

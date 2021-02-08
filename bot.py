@@ -14,11 +14,12 @@ from Currency.LIST.Adventure.Wilderness.followPath import followPath, fish
 from Currency.LIST.Adventure.Space import space, decline
 from Currency.LIST.Adventure.Space.Yes import accept, fly
 from Currency.Games import bj
-# from Fun import punish,gif
-from Fun.UNRELEASED import french
+from Fun import punish
+from Fun.UNRELEASED import french, gif
 from Utilities import mysystemd, youtubeMusic
 from Utilities.Apple_Calendar import DankCalendar, setCalendar, helpCalendar
 from Utilities.get_file_info import animationInfo, fileInfo
+from Utilities.ChannelLDL import ldl
 from Utilities.UNRELEASED import team
 import os
 
@@ -124,7 +125,7 @@ shop.add_handler(dispatcher)
 french.add_handler(dispatcher)
 
 # punish.add_handler(dispatcher)
-# gif.add_handler(dispatcher)
+gif.add_handler(dispatcher)
 # twentyFour.add_handler(dispatcher)
 # search.add_handler(dispatcher)
 
@@ -139,6 +140,8 @@ team.add_handler(dispatcher)
 DankCalendar.add_handler(dispatcher)
 setCalendar.add_handler(dispatcher)
 helpCalendar.add_handler(dispatcher)
+
+ldl.add_handler(dispatcher)
 
 commands = work.get_command() + bal.get_command() + bj.get_command() + get_command() + hunt.get_command() + fish.get_command() + lst.get_command() + shop.get_command()
 bot = updater.bot
