@@ -39,27 +39,15 @@ def buttonCallback(update,context):
         add_user_vote(mid,uid,'❤️')
         buttons[0][0] = InlineKeyboardButton(f"Love it! ❤️ {count}",callback_data=f"m:❤️:{count}")
         query.edit_message_reply_markup(InlineKeyboardMarkup(buttons))
-        if uservote[mid] == {}:
-            context.bot.send_message(msg)
-        else: 
-            context.bot.edit_message_text(chatid,update.channel_post.message_id,update.channel_post.text+f"{first_name} voted {uservote[mid][uid]}")
     elif cmd[1] == "👌🏼":
         add_user_vote(mid,uid,'👌🏼')
         buttons[0][1] = InlineKeyboardButton(f"Alright! 👌🏼 {count}",callback_data=f"vote:👌🏼:{count}")
         query.edit_message_reply_markup(InlineKeyboardMarkup(buttons))
-        if uservote[mid] == {}:
-            context.bot.send_message(msg)
-        else: 
-            context.bot.edit_message_text(chatid,update.channel_post.message_id,update.channel_post.text+f"{first_name} voted {uservote[mid][uid]}")
     elif cmd[1] == "🙅‍♂️":
         add_user_vote(mid,uid,'🙅‍♂️')
         buttons[0][2] = InlineKeyboardButton(f"No. 🙅‍♂️ {count}",callback_data=f"vote:🙅‍♂️:{count}")
         query.edit_message_reply_markup(InlineKeyboardMarkup(buttons))
-        if uservote[mid] == {}:
-            context.bot.send_message(msg)
-        else: 
-            context.bot.edit_message_text(chatid,update.channel_post.message_id,update.channel_post.text+f"{first_name} voted {uservote[mid][uid]}")
-   
+    
 def add_handler(dp:Dispatcher):
     dp.add_handler(MessageHandler(Filters.text & (~Filters.command),message))
     dp.add_handler(CallbackQueryHandler(buttonCallback,pattern="^m:[A-Za-z0-9_]*"))
