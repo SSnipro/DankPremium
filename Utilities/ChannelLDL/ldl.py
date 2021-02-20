@@ -36,13 +36,13 @@ def reaction_callback(update,context):
     count = int(cmd[2]) + 1
     query.answer("Voting Sucessful")
     if cmd[1] == '❤️':
-        buttons[0][0] = InlineKeyboardButton(f"Love it! ❤️ {count}",callback_data=f"vote:❤️:{count}")
+        buttons[0][0] = InlineKeyboardButton(f"Love it! ❤️ {count}",callback_data=f"m:❤️:{count}")
         query.edit_message_reply_markup(InlineKeyboardMarkup(buttons))
     elif cmd[1] == "👌🏼":
-        buttons[0][1] = InlineKeyboardButton(f"Alright! 👌🏼 {count}",callback_data=f"vote:👌🏼:{count}")
+        buttons[0][1] = InlineKeyboardButton(f"Alright! 👌🏼 {count}",callback_data=f"m:👌🏼:{count}")
         query.edit_message_reply_markup(InlineKeyboardMarkup(buttons))
     elif cmd[1] == "🙅‍♂️":
-        buttons[0][2] = InlineKeyboardButton(f"No. 🙅‍♂️ {count}",callback_data=f"vote:🙅‍♂️:{count}")
+        buttons[0][2] = InlineKeyboardButton(f"No. 🙅‍♂️ {count}",callback_data=f"m:🙅‍♂️:{count}")
         query.edit_message_reply_markup(InlineKeyboardMarkup(buttons))
 
 def add_handler(dp:Dispatcher):
