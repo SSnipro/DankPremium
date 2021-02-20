@@ -1,5 +1,5 @@
 from telegram.ext import Dispatcher,CommandHandler,CallbackQueryHandler
-from telegram import BotCommand,InlineKeyboardMarkup,InlineKeyboardButton
+from telegram import BotCommand,InlineKeyboardMarkup,InlineKeyboardButton, Audio, CallbackQuery,InputMediaAudio
 from Utilities import util
 import random
 
@@ -22,21 +22,21 @@ disc = {
             "Michael talks"],
         'q2':[
             "Question Simon: Est-ce que la bonne humeur c’est une grosse partie de ta vie?",
-            "Oui. Je pense que l’humour est de bonne humeur. Et l'humour est une partie très importante de ma vie.  Sans humour, la vie serait ennuyeuse. Quand nos amis sont malheureux, nous inventons une blague et sortons simplement de l'humeur malheureuse. Mes amis et moi faisions des blagues humoristiques et rions ensemble.  C'est un moment vraiment amusant.",
+            "Oui. Je pense que l’humour met de bonne humeur. Et l'humour est une partie très importante de ma vie.  Sans humour, la vie serait ennuyeuse. Quand nos amis sont malheureux, nous inventons une blague et sortons simplement de la mauvaise humeur. Mes amis et moi faisons beaucoup de blagues et rions ensemble.  C'est un moment vraiment amusant.",
             "Emily talks",
             "Simon talks",
             "Michael talks"
         ],
         'q3':[
             "Question Emily: Quels genres d’humour préfères-tu?",
-            "Je n'ai pas vraiment de genre d'humour préféré parce que je ne regarde pas vraiment les émissions d'humour, mais je pense que si j'avais un genre d'humour préféré, ce serait la comédie physique. Je pense que la comédie physique sera mon type d'humour préféré car j'aime les clowns.  Ils sont drôles.",
+            "Je n'ai pas vraiment de genre d'humour préféré parce que je ne regarde pas vraiment les émissions d'humour, mais je pense que si j'avais un genre préféré, ce serait la comédie physique. C’est mon type d'humour préféré car j'aime les clowns.  Ils sont drôles.",
             "Emily talks",
             "Simon talks",
             "Michael talks"
         ],
         'q4':[
             "Question Michael: Est-ce que tu détestes l'humeur, où est ce que tu l’aime?",
-            "Noah: Il y a beaucoup de bonnes choses dans l'humour.  Cela pourrait vous donner une humeur positive au lieu d'être d'humeur négative comme Mr Bean, quand j’ai un mauvais sentiment, je vais le regarder. Cependant, certains types d'humour sont violents et inappropriés.",
+            "Il y a beaucoup de bonnes choses dans l'humour, je te l’ai déjà dit cela pourrait vous donner une humeur positive au lieu d'être d'humeur négative comme Mr Bean, quand je ne me sens pas bien, je vais le regarder. Cependant, certains types d'humour sont violents et inappropriés.",
             "Emily talks",
             "Simon talks",
             "Michael talks"
@@ -54,11 +54,9 @@ def fr(update,context):
     f = ""
     chatid = update.effective_chat.id
     uid = str(update.effective_user.id)
-    ss = ['s1','s2']
-    s = random.choice(ss)
     if uid == "1360440667":
-        for i in list(disc[s]):
-            for j in list(disc[s][i]):
+        for i in list(disc['s1']):
+            for j in list(disc['s1'][i]):
                 msg.append(f"-{j}")
         update.message.reply_text(msg[0],reply_markup=kb)
     else: 
@@ -72,14 +70,16 @@ def buttonCallback(update, context):
         update.message.reply_text("Your not Noah!")
         return
     if query.data == 'f:audio':
-        query.answer("Audio not ready yet!")
+        query.answer("Audio ready!")
+        audio = Audio("CQACAgEAAxkBAAINiWAaBHFyvXmrVCE4t1LNi0rJEgj8AAI-AQAC3tnRRBN0iOaGz4KqHgQ","AgADPgEAAt7Z0UQ","230","None","None","audio/mpeg3","3685063")
+        query.edit_message_media(audio,reply_markup=kb)
     elif query.data == 'f:forward':
         msg.pop(0)
         for k in msg:
             query.edit_message_text(k,reply_markup=kb)
             break
     elif query.data == 'f:skip':
-        pass
+        query.edit_message_text("Question: Y a-t-il un ou une humoriste que tu aimes particulièrement?",reply_markup=kb)
 
 def add_handler(dp:Dispatcher):
     dp.add_handler(CommandHandler('frenchdisscusion', fr))

@@ -5,49 +5,89 @@ from Utilities import util
 uservote = {}
 
 def message(update,context):
-    kb = [{
+    Keyboard = [{
         'Love it! ❤️ 0':'m:❤️:0',
         'Alright! 👌🏼 0':'m:👌🏼:0',
         'No. 🙅‍♂️ 0':'m:🙅‍♂️:0'
     }]
-    ckb = util.getkb(kb)
+    DisplayKeyboard = util.getkb(Keyboard)
     if update.effective_chat.type == 'channel':
         chatid = update.channel_post.sender_chat.id
-        msg = context.bot.edit_message_reply_markup(chatid, update.channel_post.message_id, update.channel_post.text+" ",reply_markup=ckb)
+        msg = context.bot.edit_message_reply_markup(
+            chatid, 
+            update.channel_post.message_id, 
+            update.channel_post.text + " ",
+            reply_markup = DisplayKeyboard
+            )
 
-def add_user_vote(mid,uid,new):
-    if not mid in uservote :
+def add_user_vote(data,mid,uid,buttons):
+    options = {
+        "❤️" : 'Love it! ❤️ ',
+        "👌🏼": 'Alright! 👌🏼 ',
+        "🙅‍♂️": 'No. 🙅‍♂️ '
+    }
+    print(data)
+    data_choice = data[1]
+    data_count = int(data[2])
+    print(data_count,data_choice)
+    if not mid in uservote:
         uservote[mid] = {}
-    if not uid in uservote[mid] :
-        uservote[mid][uid] = ""
-    uservote[mid][uid] = str(new)
-    print(uservote)
+    if not uid in uservote[mid]:
+        uservote[mid][uid] = data_choice
+        data_count += 1
+        buttons[data_choice][0]['text'] = f"{options[data_choice]}{data_count}"
+        print(buttons[data_choice][0])
+    # c = {
+    #     "❤️":0,
+    #     "👌🏼":1,
+    #     "🙅‍♂️":2
+    #     }
+    # ctrans = {
+    #     '❤️':'Love it! ❤️ ',
+    #     '👌🏼':'Alright! 👌🏼 ',
+    #     '🙅‍♂️':'No. 🙅‍♂️ '}
 
-def buttonCallback(update,context):
-    msg = "Voting Results:\n\n"
+    # choice = c[ch]
+
+    # count = int(buttons[choice][0].callback_data.split(":")[2])
+    # print(buttons)
+    # if not mid in uservote :
+    #     uservote[mid] = {}
+    # if not uid in uservote[mid]:
+    #     uservote[mid][uid] = choice
+    #     count += 1
+    #     buttons[choice][0].text = f"{ctrans[ch]}{count}"
+    #     buttons[choice][0].callback_data = f"m:{choice}:{count}"
+    # else:
+    #     if uservote[mid][uid] == choice:
+    #         count -= 1
+    #         buttons[choice][0].text = f"{ctrans[ch]}{count}"
+    #         buttons[choice][0].callback_data = f"m:{ch}:{count}"
+    #         uservote[mid].pop(uid)
+    #     else:
+    #         count += 1
+    #         buttons[choice][0].text = f"{ctrans[ch]}{count}"
+    #         buttons[choice][0].callback_data = f"m:{ch}:{count}"
+    #         oc = uservote[mid][uid]
+    #         ocount = int(buttons[c[o]][0].callback_data.split(":")[2])
+    #         ocount -= 1
+    #         buttons[c[o]][0].text = f"{ctrans[o]}{ocount}"
+    #         buttons[c[o]][0].callback_data = f"m:{o}:{ocount}"
+    #         uservote[mid][uid] = choice
+    # return buttons
+
+def reaction_callback(update,context):
     query = update.callback_query
+    data = query.data.split(":") 
     mid = query.message.message_id
-    cmd = query.data.split(":") 
-    user = update.effective_user
-    first_name = user.first_name
-    uid = user.id
-    chatid = update.channel_post.sender_chat.id
+    uid = update.effective_user.id
     buttons = query.message.reply_markup.inline_keyboard
-    count = int(cmd[2]) + 1
-    query.answer("Voting Successful!")
-    if cmd[1] == '❤️':
-        add_user_vote(mid,uid,'❤️')
-        buttons[0][0] = InlineKeyboardButton(f"Love it! ❤️ {count}",callback_data=f"m:❤️:{count}")
-        query.edit_message_reply_markup(InlineKeyboardMarkup(buttons))
-    elif cmd[1] == "👌🏼":
-        add_user_vote(mid,uid,'👌🏼')
-        buttons[0][1] = InlineKeyboardButton(f"Alright! 👌🏼 {count}",callback_data=f"vote:👌🏼:{count}")
-        query.edit_message_reply_markup(InlineKeyboardMarkup(buttons))
-    elif cmd[1] == "🙅‍♂️":
-        add_user_vote(mid,uid,'🙅‍♂️')
-        buttons[0][2] = InlineKeyboardButton(f"No. 🙅‍♂️ {count}",callback_data=f"vote:🙅‍♂️:{count}")
-        query.edit_message_reply_markup(InlineKeyboardMarkup(buttons))
-    
+
+    Keyboard = add_user_vote(data,mid,uid,buttons)
+
+    query.answer("Voting Sucessful!")
+    query.edit_message_reply_markup(InlineKeyboardMarkup(Keyboard))
+       
 def add_handler(dp:Dispatcher):
     dp.add_handler(MessageHandler(Filters.text & (~Filters.command),message))
-    dp.add_handler(CallbackQueryHandler(buttonCallback,pattern="^m:[A-Za-z0-9_]*"))
+    dp.add_handler(CallbackQueryHandler(reaction_callback,pattern="^m:[A-Za-z0-9_:]*"))

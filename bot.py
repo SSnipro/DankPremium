@@ -126,7 +126,7 @@ french.add_handler(dispatcher)
 
 # punish.add_handler(dispatcher)
 gif.add_handler(dispatcher)
-# twentyFour.add_handler(dispatcher)
+twentyFour.add_handler(dispatcher)
 # search.add_handler(dispatcher)
 
 # Utils
