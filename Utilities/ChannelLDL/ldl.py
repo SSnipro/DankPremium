@@ -33,15 +33,18 @@ def reaction_callback(update,context):
     query = update.callback_query
     cmd = query.data.split(":") # ['vote','👍']
     buttons = query.message.reply_markup.inline_keyboard
-    count = int(cmd[2]) + 1
+    count = int(cmd[2]) 
     query.answer("Voting Sucessful")
     if cmd[1] == '❤️':
+        count += 1
         buttons[0][0] = InlineKeyboardButton(f"Love it! ❤️ {count}",callback_data=f"m:❤️:{count}")
         query.edit_message_reply_markup(InlineKeyboardMarkup(buttons))
     elif cmd[1] == "👌🏼":
+        count += 1
         buttons[0][1] = InlineKeyboardButton(f"Alright! 👌🏼 {count}",callback_data=f"m:👌🏼:{count}")
         query.edit_message_reply_markup(InlineKeyboardMarkup(buttons))
     elif cmd[1] == "🙅‍♂️":
+        count += 1
         buttons[0][2] = InlineKeyboardButton(f"No. 🙅‍♂️ {count}",callback_data=f"m:🙅‍♂️:{count}")
         query.edit_message_reply_markup(InlineKeyboardMarkup(buttons))
 
